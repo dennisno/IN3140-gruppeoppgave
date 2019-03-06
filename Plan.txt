@@ -1,9 +1,9 @@
-Uke 9: 
+Uke 9:
 Uke10: Ferdig med tutorial.
 Uke11: Roboten skal ha beveget seg noe.
 Uke12: Fordele oppgaver og se på hardware(sensor) vi trenger(muligens musikk internt).
 Plan oppdateres videre.
-Uke13: 
+Uke13:
 Uke14:
 Uke15:
 Uke16:
@@ -11,3 +11,10 @@ Uke17:
 Uke18:
 Uke19:
 Uke20: Deadline
+
+
+Vi ønsker å bruke lydsignaler, enten ved bruk av sensor eller internt, til å få robotarmen til å
+bevege seg i takt med musikken. Vi vil bruke invers kinematikk til å beregne hvordan leddene skal
+bevege seg for å komme dit vi vil ha den. Vi ønsker å bruke tredjeparts metoder til å håndtere
+lydsignalene. Vi kommer til å eksperimentere med hvilke bevegelser vi ønsker at den skal ta til
+musikken.
