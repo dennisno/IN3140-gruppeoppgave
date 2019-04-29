@@ -1,0 +1,2 @@
+
+-DCATKIN_DEVEL_PREFIX=/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/tutorial_ws/devel -DCMAKE_INSTALL_PREFIX=/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/tutorial_ws/install -G Unix Makefiles
