@@ -117,6 +117,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/tutorial_ws/build/gtest/cmake_install.cmake")
+  include("/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/tutorial_ws/build/tutorial/cmake_install.cmake")
 
 endif()
 
