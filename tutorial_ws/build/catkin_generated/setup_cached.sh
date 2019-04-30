@@ -8,3 +8,4 @@
 
 # modified environment variables
 export PWD="/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/tutorial_ws/build"
+export PYTHONPATH="/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/tutorial_ws/devel/lib/python2.7/dist-packages:$PYTHONPATH"

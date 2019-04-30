@@ -1,0 +1,8 @@
+prefix=/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/tutorial_ws/devel
+
+Name: tutorial_msgs
+Description: Description of tutorial_msgs
+Version: 0.0.0
+Cflags: -I/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/tutorial_ws/devel/include
+Libs: -L/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/tutorial_ws/devel/lib 
+Requires: message_runtime
