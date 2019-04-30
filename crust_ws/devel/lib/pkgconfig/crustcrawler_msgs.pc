@@ -1,0 +1,8 @@
+prefix=/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/devel
+
+Name: crustcrawler_msgs
+Description: Description of crustcrawler_msgs
+Version: 0.0.1
+Cflags: -I/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/devel/include
+Libs: -L/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/devel/lib 
+Requires: message_runtime
