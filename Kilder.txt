@@ -1,0 +1,5 @@
+http://librosa.github.io/librosa/tutorial.html
+
+Fant denne python pakken, den ser ut til å inneholde det vi trenger for å lese "beats"
+fra en musikkfil. Må sjekkes opp hvordan man synkroniserer musikken
+med lyd/bevegelse. 
