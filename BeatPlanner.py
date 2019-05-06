@@ -1,11 +1,8 @@
-from __future__ import print_function
-from std_msgs.msg import String
+
+from std_msgs.msg import int32
 import rospy
 import librosa
-import matplotlib.pyplot as plt
-import librosa.display
-import winsound
-import pyglet
+
 
 def read_beat(self, filename):
 
