@@ -1,5 +1,6 @@
 
 from std_msgs.msg import Int32
+from std_msgs.msg import String
 import rospy
 import librosa
 
@@ -14,7 +15,10 @@ def read_beat(self, filename):
     return tempo, beat_frames
 
 def talker():
-    pub = rospy.Publisher('BeatPlanPub', Int32, queue_size = 10)
+    publish = rospy.Publisher('MusicPub', String, queue_size = 1)
+    rospy.loginfo('MusicPub')
+    publish.publish('LetItBe.wav')
+    pub = rospy.Publisher('BeatPlanPub', Int32, queue_size = 100)
     rospy.init_node('talker', anonymous = True)
     rate = rospy.Rate(10)
     tempo, beat_frames = read_beat('LetItBe.wav')
