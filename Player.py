@@ -29,12 +29,11 @@ def listener():
     rospy.Subscriber('StartMusic', Boolean, start_music)
     rospy.spin()
 
-def play_music(test):
-    if(test):
+def play_music(start):
+    while not start:
         playmusic = pyglet.resource.media(music)
         playmusic.play()
         pyglet.app.run()
 
 if __name__ == '__main__':
     listener()
-    play_music()
