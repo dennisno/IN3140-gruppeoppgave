@@ -99,7 +99,7 @@ namespace message_traits
 
 
 // BOOLTRAITS {'IsFixedSize': False, 'IsMessage': True, 'HasHeader': True}
-// {'geometry_msgs': ['/opt/ros/kinetic/share/geometry_msgs/cmake/../msg'], 'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'crustcrawler_msgs': ['/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/src/crustcrawler_simulation/crustcrawler_msgs/msg']}
+// {'geometry_msgs': ['/opt/ros/melodic/share/geometry_msgs/cmake/../msg'], 'std_msgs': ['/opt/ros/melodic/share/std_msgs/cmake/../msg'], 'crustcrawler_msgs': ['/home/elias/3140gruppeoppgave/crust_ws/src/crustcrawler_simulation/crustcrawler_msgs/msg']}
 
 // !!!!!!!!!!! ['__class__', '__delattr__', '__dict__', '__doc__', '__eq__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_parsed_fields', 'constants', 'fields', 'full_name', 'has_header', 'header_present', 'names', 'package', 'parsed_fields', 'short_name', 'text', 'types']
 
@@ -166,64 +166,62 @@ struct Definition< ::crustcrawler_msgs::CircleDescription_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "# This message describes a circle that is meant to be drawn by the reduced\n\
-# Crustcrawler.\n\
-\n\
-# Standard header:\n\
-Header header\n\
-\n\
-# Description of the circle to be drawn:\n\
-# Origin of the circle\n\
-geometry_msgs/Point origin\n\
-# Radius of the circle in centimeters\n\
-float32 radius\n\
-# Number of points describes the total number of points to draw in the circle\n\
-# NOTE: Remember that the circle should always be completed\n\
-int32 num_points\n\
-# The following two arguments describes the orientation of the board using\n\
-# axis-angle notation. The angle is in radians\n\
-float32 angle\n\
-# The axis is a unit vector\n\
-geometry_msgs/Vector3 axis\n\
-\n\
-================================================================================\n\
-MSG: std_msgs/Header\n\
-# Standard metadata for higher-level stamped data types.\n\
-# This is generally used to communicate timestamped data \n\
-# in a particular coordinate frame.\n\
-# \n\
-# sequence ID: consecutively increasing ID \n\
-uint32 seq\n\
-#Two-integer timestamp that is expressed as:\n\
-# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')\n\
-# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')\n\
-# time-handling sugar is provided by the client library\n\
-time stamp\n\
-#Frame this data is associated with\n\
-# 0: no frame\n\
-# 1: global frame\n\
-string frame_id\n\
-\n\
-================================================================================\n\
-MSG: geometry_msgs/Point\n\
-# This contains the position of a point in free space\n\
-float64 x\n\
-float64 y\n\
-float64 z\n\
-\n\
-================================================================================\n\
-MSG: geometry_msgs/Vector3\n\
-# This represents a vector in free space. \n\
-# It is only meant to represent a direction. Therefore, it does not\n\
-# make sense to apply a translation to it (e.g., when applying a \n\
-# generic rigid transformation to a Vector3, tf2 will only apply the\n\
-# rotation). If you want your data to be translatable too, use the\n\
-# geometry_msgs/Point message instead.\n\
-\n\
-float64 x\n\
-float64 y\n\
-float64 z\n\
-";
+    return "# This message describes a circle that is meant to be drawn by the reduced\n"
+"# Crustcrawler.\n"
+"\n"
+"# Standard header:\n"
+"Header header\n"
+"\n"
+"# Description of the circle to be drawn:\n"
+"# Origin of the circle\n"
+"geometry_msgs/Point origin\n"
+"# Radius of the circle in centimeters\n"
+"float32 radius\n"
+"# Number of points describes the total number of points to draw in the circle\n"
+"# NOTE: Remember that the circle should always be completed\n"
+"int32 num_points\n"
+"# The following two arguments describes the orientation of the board using\n"
+"# axis-angle notation. The angle is in radians\n"
+"float32 angle\n"
+"# The axis is a unit vector\n"
+"geometry_msgs/Vector3 axis\n"
+"\n"
+"================================================================================\n"
+"MSG: std_msgs/Header\n"
+"# Standard metadata for higher-level stamped data types.\n"
+"# This is generally used to communicate timestamped data \n"
+"# in a particular coordinate frame.\n"
+"# \n"
+"# sequence ID: consecutively increasing ID \n"
+"uint32 seq\n"
+"#Two-integer timestamp that is expressed as:\n"
+"# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')\n"
+"# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')\n"
+"# time-handling sugar is provided by the client library\n"
+"time stamp\n"
+"#Frame this data is associated with\n"
+"string frame_id\n"
+"\n"
+"================================================================================\n"
+"MSG: geometry_msgs/Point\n"
+"# This contains the position of a point in free space\n"
+"float64 x\n"
+"float64 y\n"
+"float64 z\n"
+"\n"
+"================================================================================\n"
+"MSG: geometry_msgs/Vector3\n"
+"# This represents a vector in free space. \n"
+"# It is only meant to represent a direction. Therefore, it does not\n"
+"# make sense to apply a translation to it (e.g., when applying a \n"
+"# generic rigid transformation to a Vector3, tf2 will only apply the\n"
+"# rotation). If you want your data to be translatable too, use the\n"
+"# geometry_msgs/Point message instead.\n"
+"\n"
+"float64 x\n"
+"float64 y\n"
+"float64 z\n"
+;
   }
 
   static const char* value(const ::crustcrawler_msgs::CircleDescription_<ContainerAllocator>&) { return value(); }

@@ -1,8 +1,8 @@
-# Install script for directory: /home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/src/crustcrawler_simulation/crustcrawler_simulation
+# Install script for directory: /home/elias/3140gruppeoppgave/crust_ws/src/crustcrawler_simulation/crustcrawler_simulation
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/elias/3140gruppeoppgave/crust_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -32,7 +32,12 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
   set(CMAKE_INSTALL_SO_NO_EXE "1")
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/crustcrawler_simulation" TYPE FILE FILES "/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/src/crustcrawler_simulation/crustcrawler_simulation/package.xml")
+# Is this installation the result of a crosscompile?
+if(NOT DEFINED CMAKE_CROSSCOMPILING)
+  set(CMAKE_CROSSCOMPILING "FALSE")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/crustcrawler_simulation" TYPE FILE FILES "/home/elias/3140gruppeoppgave/crust_ws/src/crustcrawler_simulation/crustcrawler_simulation/package.xml")
 endif()
 
