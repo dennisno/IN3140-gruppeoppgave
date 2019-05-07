@@ -18,7 +18,6 @@ def calculate_new_destination(data):
 
 
 def listener():
-    
     rospy.init_node("point_to_point_mapper")
     sub = rospy.Subscriber("/BeatPlanPub", Int32, calculate_new_destination)
     rospy.spin()
