@@ -7,7 +7,7 @@ import rospy
 import pyglet
 
 
-music = ""
+global music = ""
 
 
 

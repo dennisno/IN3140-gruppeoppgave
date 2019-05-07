@@ -20,8 +20,16 @@ current_angle = 0
 current_state = "up"
 
 def publish_new_message(xyz_list, delta_time):
-    ####DENNE MÅ SKRIVES
+
+    p2p.x = xyz_list[0]
+    p2p.y = xyz_list[1]
+    p2p.z = xyz_list[2]
+    p2p.delta = delta_time
+
     pub = rospy.Publisher("/Next_point_channel", Float32, queue_size = 10)
+    rospy.init_node('next_point', anonymous = True)
+    rospy.loginfo("next_point")
+    pub.publish(p2p)
 
 def calculate_new_destination(delta_time):
     global LINK1, LINK2, LINK3, LINK4, FULL_HEIGHT, PI, ROTATION_AMOUNT, INITIAL_STATE, current_angle, current_state

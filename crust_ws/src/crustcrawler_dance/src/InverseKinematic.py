@@ -87,7 +87,7 @@ def talker(joint_angles):
     pub = rospy.Publisher('/Next_joint_angle', Float32, queue_size = 1)
     rospy.init_node('joint_angles',anonymous = True)
     rospy.loginfo('joint_angles')
-    publish.publish(p2p)
+    pub.publish(p2p)
 
 
 if __name__ == '__main__':
