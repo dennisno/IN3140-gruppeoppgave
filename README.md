@@ -6,24 +6,24 @@ Dette programmet krever i tillegg til ROS følgende pakker:
 
 Librosa:
 
-*install på linux med*
+*Install på linux med*
 ``` markdown
-**pip install librosa**
+pip install librosa
 ```
 *eller på conda med*
 ``` markdown
-**conda install -c conda-forge librosa**
+conda install -c conda-forge librosa
 ```
 
 Pyglet:
 
 *Install på linux med*
 ``` markdown
- **pip install pyglet**
+ pip install pyglet
  ```
 *eller på conda med*
 ``` markdown
- **conda install -c conda-forge pyglet**
+ conda install -c conda-forge pyglet
 ```
 BeatPlanner
 ------
