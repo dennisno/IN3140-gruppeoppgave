@@ -21,10 +21,18 @@ def spin(self, event):
 	self.publish(event.angles)
 	self.delta_time += event.delta
 
-if __name__ == '__main__':
+def create_queue():
+	rospy.init_node('timed queue', anonymous=True)
 	obj = ()
     obj.delta_time = rospy.get_rostime()
     obj.spin = spin_start
     obj.publish = rospy.Publisher('MultiControllerState', jointAngleMessage, queue_size=1).publish
     rospy.Subscriber('StartMusic', DeltaAngles, obj.spin)
     rospy.spin()
+
+if __name__ == '__main__':
+	try:
+		create_queue()
+	except rospy.ROSInterruptException:
+		pass
+		
