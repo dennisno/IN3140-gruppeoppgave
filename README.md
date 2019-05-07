@@ -34,4 +34,12 @@ Videre publiserer den også til **Player** for å starte musikk.
 Player
 ------
 Player spiller musikk, og starter ikke å spille musikk før den får ok signal fra
-**Point-to-point**, den publiserer også til **xx** for å synkronisere musikken til bevegelsen.
+**Point-to-point**, den subscriber også til **TimedMoveQueue** for å vite når den skal starte musikken.
+
+Point-to-point
+------
+Point-to-point subscriber til **BeatPlanner** og får dermed ;Delta Time inn som den kalkulerer et punkt den vil til, før den publisher dette til **InverseKinematic** for å kalkulere hvilke vinkler leddene skal stå i. 
+
+InverseKinematic
+------
+InverseKinematic regner ut hvilke vinkler hvert ledd må ha for å komme til punktene vi setter til hver beat. Den subscriber til **Point-to-point** hvor den får inn hvilke punkter vi vil nå, og publisher til **TimedMoveQueue**.
