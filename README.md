@@ -3,7 +3,9 @@ Gruppeoppgave for å lage en dansende robot-arm
 av Eirik, Elias og Dennis
 
 Dette programmet krever i tillegg til ROS følgende pakker:
+
 Librosa:
+
 *install på linux med*
 ``` markdown
 **pip install librosa**
@@ -12,7 +14,9 @@ Librosa:
 ``` markdown
 **conda install -c conda-forge librosa**
 ```
+
 Pyglet:
+
 *Install på linux med*
 ``` markdown
  **pip install pyglet**
