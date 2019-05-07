@@ -4,7 +4,7 @@
 import rospy
 import time
 
-from std_msgs.msg import Boolean
+from std_msgs.msg import Bool
 
 def spin_start(self, event):
 	#After this launch function make shure the object points to the correct spin function
@@ -22,8 +22,8 @@ def spin(self, event):
 	self.delta_time += event.delta
 
 def create_queue():
-	rospy.init_node('timed queue', anonymous=True)
-	obj = ()
+    rospy.init_node('timed_queue', anonymous=True)
+    obj = ()
     obj.delta_time = rospy.get_rostime()
     obj.spin = spin_start
     obj.publish = rospy.Publisher('MultiControllerState', jointAngleMessage, queue_size=1).publish
