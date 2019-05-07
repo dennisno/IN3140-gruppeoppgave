@@ -9,6 +9,10 @@ import numpy as np
 import warnings
 
 def inverse(self, cart_cord):
+    L1 = 11.0
+    L2 = 22.3
+    L3 = 17.0
+    L4 = 8.0
     """
     Returns all sets of joint_angles as a list of lists.
     If the size of the list is 1, there are infinite solutions
