@@ -23,14 +23,16 @@ def publish_new_message(data):
 
 def calculate_new_destination(beat_timing):
     global LINK1, LINK2, LINK3, LINK4, FULL_HEIGHT, PI, ROTATION_AMOUNT, INITIAL_STATE, current_angle
-    new_postiton
 
     rospy.loginfo("Recieved: %s", beat_timing.data)
     #Rotate around link 1:
     current_angle += ROTATION_AMOUNT
     if (current_angle >= 2*PI):
         current_angle = 0
-    current_state[0] += math.cos
+
+    new_postiton = [INITIAL_STATE[0]*math.cos(current_angle), INITIAL_STATE[1]*math.sin(current_angle), INITIAL_STATE[2]]
+
+    #Move
 
 
 
