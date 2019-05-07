@@ -38,7 +38,7 @@ Player spiller musikk, og starter ikke å spille musikk før den får ok signal 
 
 Point-to-point
 ------
-Point-to-point subscriber til **BeatPlanner** og får dermed ;Delta Time inn som den kalkulerer et punkt den vil til, før den publisher dette til **InverseKinematic** for å kalkulere hvilke vinkler leddene skal stå i. 
+Point-to-point subscriber til **BeatPlanner** og får dermed 	\( \delta \ \Delta \) Time inn som den kalkulerer et punkt den vil til, før den publisher dette til **InverseKinematic** for å kalkulere hvilke vinkler leddene skal stå i. 
 
 InverseKinematic
 ------
