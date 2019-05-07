@@ -20,8 +20,7 @@ INITIAL_STATE = [LINK2+LINK3, 0, LINK1]
 current_angle = 0
 current_state = "up"
 
-def publish_new_message(xyz_list, delta_time):
-
+def publish_new_message(xyz_list, delta_time):  
     DeltaPoint.x = xyz_list[0]
     DeltaPoint.y = xyz_list[1]
     DeltaPoint.z = xyz_list[2]
