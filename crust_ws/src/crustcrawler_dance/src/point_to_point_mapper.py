@@ -21,15 +21,15 @@ current_state = "up"
 
 def publish_new_message(xyz_list, delta_time):
 
-    p2p.x = xyz_list[0]
-    p2p.y = xyz_list[1]
-    p2p.z = xyz_list[2]
-    p2p.delta = delta_time
+    DeltaPoint.x = xyz_list[0]
+    DeltaPoint.y = xyz_list[1]
+    DeltaPoint.z = xyz_list[2]
+    DeltaPoint.delta = delta_time
 
-    pub = rospy.Publisher("/Next_point_channel", Float32, queue_size = 10)
+    pub = rospy.Publisher("/Next_point_channel", DeltaPoint, queue_size = 10)
     rospy.init_node('next_point', anonymous = True)
     rospy.loginfo("next_point")
-    pub.publish(p2p)
+    pub.publish(DeltaPoint)
 
 def calculate_new_destination(delta_time):
     global LINK1, LINK2, LINK3, LINK4, FULL_HEIGHT, PI, ROTATION_AMOUNT, INITIAL_STATE, current_angle, current_state
@@ -56,7 +56,7 @@ def listener():
     rospy.init_node("point_to_point_mapper")
     sub = rospy.Subscriber("BeatPlanPub", Float32, calculate_new_destination)
     rospy.spin()
-    
+
 
 
 if __name__ == '__main__':
