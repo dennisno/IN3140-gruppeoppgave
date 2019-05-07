@@ -5,20 +5,36 @@
 # -
 
 #!/usr/bin/env python
-
 import rospy
-from std_msgs.msg import Int32
+from std_msgs.msg import Float32
 
+LINK1 = 11.0
+LINK2 = 22.3
+LINK3 = 17
+LINK4 = 8
+FULL_HEIGHT = LINK1 + LINK2 + LINK3 + (math.sin(PI/4)*LINK4)
+PI = math.pi
+ROTATION_AMOUNT = 2*PI/20
+INITIAL_STATE = [LINK2+LINK3, 0, LINK1]
+current_angle = 0
 
 def publish_new_message(data):
-    pub = rospy.Publisher("/Next_point_channel", Int32, queue_size = 10)
+    pub = rospy.Publisher("/Next_point_channel", Float32, queue_size = 10)
 
-def calculate_new_destination(data):
-    rospy.loginfo("Recieved: %s", data.data)
+def calculate_new_destination(beat_timing):
+    global LINK1, LINK2, LINK3, LINK4, FULL_HEIGHT, PI, ROTATION_AMOUNT, INITIAL_STATE, current_angle
+    new_postiton
+
+    rospy.loginfo("Recieved: %s", beat_timing.data)
+    #Rotate around link 1:
+    current_angle += ROTATION_AMOUNT
+    if (current_angle >= 2*PI):
+        current_angle = 0
+    current_state[0] += math.cos
+
 
 
 def listener():
-    
     rospy.init_node("point_to_point_mapper")
-    sub = rospy.Subscriber("/BeatPlanPub", Int32, calculate_new_destination)
+    sub = rospy.Subscriber("/BeatPlanPub", Float32, calculate_new_destination)
     rospy.spin()
