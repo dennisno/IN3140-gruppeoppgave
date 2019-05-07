@@ -1,8 +1,8 @@
-# Install script for directory: /home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/src/crustcrawler_simulation/crustcrawler_msgs
+# Install script for directory: /home/elias/3140gruppeoppgave/crust_ws/src/crustcrawler_simulation/crustcrawler_msgs
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/elias/3140gruppeoppgave/crust_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -32,54 +32,59 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
   set(CMAKE_INSTALL_SO_NO_EXE "1")
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/crustcrawler_msgs/msg" TYPE FILE FILES "/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/src/crustcrawler_simulation/crustcrawler_msgs/msg/CircleDescription.msg")
+# Is this installation the result of a crosscompile?
+if(NOT DEFINED CMAKE_CROSSCOMPILING)
+  set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/crustcrawler_msgs/cmake" TYPE FILE FILES "/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/build/crustcrawler_simulation/crustcrawler_msgs/catkin_generated/installspace/crustcrawler_msgs-msg-paths.cmake")
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/crustcrawler_msgs/msg" TYPE FILE FILES "/home/elias/3140gruppeoppgave/crust_ws/src/crustcrawler_simulation/crustcrawler_msgs/msg/CircleDescription.msg")
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/devel/include/crustcrawler_msgs")
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/crustcrawler_msgs/cmake" TYPE FILE FILES "/home/elias/3140gruppeoppgave/crust_ws/build/crustcrawler_simulation/crustcrawler_msgs/catkin_generated/installspace/crustcrawler_msgs-msg-paths.cmake")
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/devel/share/roseus/ros/crustcrawler_msgs")
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/elias/3140gruppeoppgave/crust_ws/devel/include/crustcrawler_msgs")
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/devel/share/common-lisp/ros/crustcrawler_msgs")
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/elias/3140gruppeoppgave/crust_ws/devel/share/roseus/ros/crustcrawler_msgs")
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/devel/share/gennodejs/ros/crustcrawler_msgs")
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/elias/3140gruppeoppgave/crust_ws/devel/share/common-lisp/ros/crustcrawler_msgs")
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  execute_process(COMMAND "/usr/bin/python" -m compileall "/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/devel/lib/python2.7/dist-packages/crustcrawler_msgs")
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/elias/3140gruppeoppgave/crust_ws/devel/share/gennodejs/ros/crustcrawler_msgs")
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages" TYPE DIRECTORY FILES "/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/devel/lib/python2.7/dist-packages/crustcrawler_msgs")
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  execute_process(COMMAND "/usr/bin/python2" -m compileall "/home/elias/3140gruppeoppgave/crust_ws/devel/lib/python2.7/dist-packages/crustcrawler_msgs")
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/build/crustcrawler_simulation/crustcrawler_msgs/catkin_generated/installspace/crustcrawler_msgs.pc")
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages" TYPE DIRECTORY FILES "/home/elias/3140gruppeoppgave/crust_ws/devel/lib/python2.7/dist-packages/crustcrawler_msgs")
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/crustcrawler_msgs/cmake" TYPE FILE FILES "/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/build/crustcrawler_simulation/crustcrawler_msgs/catkin_generated/installspace/crustcrawler_msgs-msg-extras.cmake")
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/elias/3140gruppeoppgave/crust_ws/build/crustcrawler_simulation/crustcrawler_msgs/catkin_generated/installspace/crustcrawler_msgs.pc")
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/crustcrawler_msgs/cmake" TYPE FILE FILES "/home/elias/3140gruppeoppgave/crust_ws/build/crustcrawler_simulation/crustcrawler_msgs/catkin_generated/installspace/crustcrawler_msgs-msg-extras.cmake")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/crustcrawler_msgs/cmake" TYPE FILE FILES
-    "/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/build/crustcrawler_simulation/crustcrawler_msgs/catkin_generated/installspace/crustcrawler_msgsConfig.cmake"
-    "/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/build/crustcrawler_simulation/crustcrawler_msgs/catkin_generated/installspace/crustcrawler_msgsConfig-version.cmake"
+    "/home/elias/3140gruppeoppgave/crust_ws/build/crustcrawler_simulation/crustcrawler_msgs/catkin_generated/installspace/crustcrawler_msgsConfig.cmake"
+    "/home/elias/3140gruppeoppgave/crust_ws/build/crustcrawler_simulation/crustcrawler_msgs/catkin_generated/installspace/crustcrawler_msgsConfig-version.cmake"
     )
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/crustcrawler_msgs" TYPE FILE FILES "/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/src/crustcrawler_simulation/crustcrawler_msgs/package.xml")
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/crustcrawler_msgs" TYPE FILE FILES "/home/elias/3140gruppeoppgave/crust_ws/src/crustcrawler_simulation/crustcrawler_msgs/package.xml")
 endif()
 

@@ -1,8 +1,8 @@
-prefix=/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/install
+prefix=/home/elias/3140gruppeoppgave/crust_ws/install
 
 Name: crustcrawler_pen_description
 Description: Description of crustcrawler_pen_description
 Version: 0.1.0
 Cflags: 
-Libs: -L/home/eirikolb/M-drive/Documents/In3140/ROS/3140gruppeoppgave/crust_ws/install/lib 
+Libs: -L/home/elias/3140gruppeoppgave/crust_ws/install/lib 
 Requires: crustcrawler_description
