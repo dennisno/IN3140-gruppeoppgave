@@ -1,4 +1,4 @@
-# 3140gruppeoppgave
+# 3140 Gruppeoppgave
 Gruppeoppgave for å lage en dansende robot-arm
 av Eirik, Elias og Dennis
 
