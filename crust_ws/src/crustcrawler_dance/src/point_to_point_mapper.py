@@ -7,6 +7,7 @@
 #!/usr/bin/env python
 import rospy
 from std_msgs.msg import Float32
+from DeltaPoint.msg import DeltaPoint
 
 LINK1 = 11.0
 LINK2 = 22.3

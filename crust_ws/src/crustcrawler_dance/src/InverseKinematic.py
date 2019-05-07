@@ -1,6 +1,7 @@
 from std_msgs.msg import Float32
 from std_msgs.msg import String
 from std_msgs.msg import Boolean
+from DeltaPoint.msg import DeltaPoint
 
 import rospy
 import pyglet
