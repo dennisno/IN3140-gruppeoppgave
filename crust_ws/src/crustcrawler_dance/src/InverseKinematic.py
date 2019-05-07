@@ -73,7 +73,7 @@ def calculate_inverse(data):
     cart_cord = [data.x, data.y, data.z]
     delta_time = data.delta
     joint_angles = inverse(cart_cord)
-    joint_angles = joint_angles.append(delta_time)
+    joint_angles.append(delta_time)
     talker(joint_angles)
 
 def listener():
