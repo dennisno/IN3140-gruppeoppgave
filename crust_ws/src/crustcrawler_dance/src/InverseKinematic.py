@@ -73,7 +73,7 @@ def calculate_inverse(data):
     cart_cord = [data.x, data.y, data.z]
     delta_time = data.delta
     joint_angles = inverse(cart_cord)
-    joint_angles = joint_angles + delta_time
+    joint_angles = joint_angles.append(delta_time)
     talker(joint_angles)
 
 def listener():
@@ -86,7 +86,7 @@ def talker(joint_angles):
     DeltaPoint.z = joint_angles[2]
     DeltaPoint.delta = joint_angles[3]
     pub = rospy.Publisher('/Next_joint_angle', DeltaPoint, queue_size = 1)
-    rospy.init_node('joint_angles',anonymous = True)
+    rospy.init_node('joint_angles', anonymous = True)
     rospy.loginfo('joint_angles')
     pub.publish(DeltaPoint)
 
