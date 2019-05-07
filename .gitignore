@@ -1,2 +1,2 @@
-crust_ws/build
-crust_ws/devel
+crust_ws/build/*
+crust_ws/devel/*
