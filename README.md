@@ -38,8 +38,12 @@ Player spiller musikk, og starter ikke å spille musikk før den får ok signal 
 
 Point-to-point
 ------
-Point-to-point subscriber til **BeatPlanner** og får dermed &Delta; Time inn som den kalkulerer et punkt den vil til, før den publisher dette til **InverseKinematic** for å kalkulere hvilke vinkler leddene skal stå i. 
+Point-to-point subscriber til **BeatPlanner** og får dermed &Delta; Time inn som den kalkulerer et punkt den vil til, før den publisher dette til **InverseKinematic** for å kalkulere hvilke vinkler leddene skal stå i.
 
 InverseKinematic
 ------
 InverseKinematic regner ut hvilke vinkler hvert ledd må ha for å komme til punktene vi setter til hver beat. Den subscriber til **Point-to-point** hvor den får inn hvilke punkter vi vil nå, og publisher til **TimedMoveQueue**.
+
+TimedMoveQueue
+------
+TimedMoveQueue lager en lenkeliste med alle vinklene den får. Den subscriber på **InverseKinematic** og legger vinklene til på enden av lenkelisten. TimedMoveQueue publisher bevegelsene til **Controller** som får armen til å flytte på seg. TimedMoveQueue publisher også et startsignal til **Player** for at den skal starte å spille musikk.
