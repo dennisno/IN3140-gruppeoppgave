@@ -18,7 +18,7 @@ def publish_new_message(xyz_list, delta_time):
     DeltaPoint.x = xyz_list[0]
     DeltaPoint.y = xyz_list[1]
     DeltaPoint.z = xyz_list[2]
-    DeltaPoint.delta = delta_time
+    DeltaPoint.delta = delta_time 
 
     pub = rospy.Publisher("/Next_point_channel", DeltaPoint, queue_size = 10)
     rospy.init_node('next_point', anonymous = True)
