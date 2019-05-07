@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
-from std_msgs.msg import Int32
+from std_msgs.msg import Float32
 from std_msgs.msg import String
+from std_msgs.msg import Boolean
 import rospy
 import pyglet
 
@@ -9,26 +10,31 @@ import pyglet
 music = ""
 
 
-pyglet.app.run()
+
 
 def callback(data):
-    rospy.loginfo(data)
-    music = data
+    rospy.loginfo(data.data)
+    music = data.data
+
+def start_music(data):
+    rospy.loginfo(data.data)
+    play_music(data.data)
+
 
 def listener():
     rospy.init_node('music')
     rospy.Subscriber('MusicPub', String, callback)
-    pub = rospy.Publisher('sync', Int32, queue_size = 100)
-    play_music()
-    rate = rospy.Rate(1)
-    while not rospy.is_shutdown():
-        rospy.loginfo()
-        pub.publish()
-        rate.sleep()
+    rospy.spin()
+    rospy.init_node('start music')
+    rospy.Subscriber('StartMusic', Boolean, start_music)
+    rospy.spin()
 
-def play_music():
-    playmusic = pyglet.resource.media(music)
-    playmusic.play()
+def play_music(test):
+    if(test):
+        playmusic = pyglet.resource.media(music)
+        playmusic.play()
+        pyglet.app.run()
 
 if __name__ == '__main__':
     listener()
+    play_music()

@@ -1,5 +1,5 @@
 
-from std_msgs.msg import Int32
+from std_msgs.msg import Float32
 from std_msgs.msg import String
 import rospy
 import librosa
@@ -18,7 +18,7 @@ def talker():
     publish = rospy.Publisher('MusicPub', String, queue_size = 1)
     rospy.loginfo('MusicPub')
     publish.publish('LetItBe.wav')
-    pub = rospy.Publisher('BeatPlanPub', Int32, queue_size = 100)
+    pub = rospy.Publisher('BeatPlanPub', Float32, queue_size = 100)
     rospy.init_node('talker', anonymous = True)
     rate = rospy.Rate(10)
     tempo, beat_frames = read_beat('LetItBe.wav')
@@ -33,5 +33,5 @@ def talker():
 if __name__ == '__main__':
     try:
         talker()
-    except rospy.ROSInterruptException:
+    except rospy.ROSFloaterruptException:
         pass
