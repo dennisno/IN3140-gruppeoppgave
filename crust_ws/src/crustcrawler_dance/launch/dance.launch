@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+	<!-- Launch all costum nodes [*.py scripts] -->
+	<node name="beat_planner" pkg="crustcrawler_dance" type="BeatPlanner.py" output="screen"/>
+
+
+</launch>
+
+

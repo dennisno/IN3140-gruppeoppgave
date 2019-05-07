@@ -1,8 +1,0 @@
-prefix=/home/elias/3140gruppeoppgave/crust_ws/install
-
-Name: crustcrawler_pen_gazebo
-Description: Description of crustcrawler_pen_gazebo
-Version: 0.1.0
-Cflags: 
-Libs: -L/home/elias/3140gruppeoppgave/crust_ws/install/lib 
-Requires: 

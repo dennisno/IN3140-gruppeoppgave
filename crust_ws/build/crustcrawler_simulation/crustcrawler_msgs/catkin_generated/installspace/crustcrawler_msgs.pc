@@ -1,8 +1,0 @@
-prefix=/home/elias/3140gruppeoppgave/crust_ws/install
-
-Name: crustcrawler_msgs
-Description: Description of crustcrawler_msgs
-Version: 0.0.1
-Cflags: -I/home/elias/3140gruppeoppgave/crust_ws/install/include
-Libs: -L/home/elias/3140gruppeoppgave/crust_ws/install/lib 
-Requires: message_runtime

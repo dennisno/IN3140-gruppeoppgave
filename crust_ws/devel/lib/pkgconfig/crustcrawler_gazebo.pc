@@ -1,8 +1,0 @@
-prefix=/home/elias/3140gruppeoppgave/crust_ws/devel
-
-Name: crustcrawler_gazebo
-Description: Description of crustcrawler_gazebo
-Version: 0.0.1
-Cflags: 
-Libs: -L/home/elias/3140gruppeoppgave/crust_ws/devel/lib 
-Requires: 
