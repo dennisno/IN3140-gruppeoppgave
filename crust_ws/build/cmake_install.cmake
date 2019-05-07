@@ -139,6 +139,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/elias/3140gruppeoppgave/crust_ws/build/crustcrawler_simulation/crustcrawler_gazebo/cmake_install.cmake")
   include("/home/elias/3140gruppeoppgave/crust_ws/build/crustcrawler_pen/crustcrawler_pen_gazebo/cmake_install.cmake")
   include("/home/elias/3140gruppeoppgave/crust_ws/build/crustcrawler_pen/crustcrawler_pen_description/cmake_install.cmake")
+  include("/home/elias/3140gruppeoppgave/crust_ws/build/crustcrawler_dance/cmake_install.cmake")
 
 endif()
 
