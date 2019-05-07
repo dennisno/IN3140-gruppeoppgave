@@ -56,3 +56,8 @@ def listener():
     rospy.init_node("point_to_point_mapper")
     sub = rospy.Subscriber("BeatPlanPub", Float32, calculate_new_destination)
     rospy.spin()
+    
+
+
+if __name__ == '__main__':
+    listener()
