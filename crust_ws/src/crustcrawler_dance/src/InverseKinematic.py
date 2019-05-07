@@ -67,7 +67,7 @@ def inverse(self, cart_cord):
 
     except RuntimeWarning:
         print("Point outside of work area")
-    return joint_angles
+    return joint_angles[0]
 
 def calculate_inverse(data):
     cart_cord = [data.x, data.y, data.z]
