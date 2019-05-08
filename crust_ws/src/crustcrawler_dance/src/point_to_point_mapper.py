@@ -15,9 +15,9 @@ current_angle = 0
 current_state = "up"
 
 def publish_new_message(xyz_list, delta_time):
-    DeltaPoint.x = xyz_list[0]
-    DeltaPoint.y = xyz_list[1]
-    DeltaPoint.z = xyz_list[2]
+    DeltaPoint.point[0] = xyz_list[0]
+    DeltaPoint.point[1] = xyz_list[1]
+    DeltaPoint.point[2] = xyz_list[2]
     DeltaPoint.delta = delta_time
 
     pub = rospy.Publisher("/Next_point_channel", DeltaPoint, queue_size = 10)
