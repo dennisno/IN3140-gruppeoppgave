@@ -10,13 +10,11 @@ import pyglet
 global music = ""
 
 
-
-
 def callback(data):
     rospy.loginfo(data.data)
     music = data.data
 
-def start_music(self, data):
+def start_music(data):
     rospy.loginfo(data.data)
     play_music(data.data)
 
@@ -29,7 +27,7 @@ def listener():
     rospy.Subscriber('StartMusic', Boolean, start_music)
     rospy.spin()
 
-def play_music(self, start):
+def play_music(start):
     while not start:
         playmusic = pyglet.resource.media(music)
         playmusic.play()

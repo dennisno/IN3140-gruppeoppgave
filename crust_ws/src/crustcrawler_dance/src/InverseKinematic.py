@@ -8,7 +8,7 @@ import pyglet
 import numpy as np
 import warnings
 
-def inverse(self, cart_cord):
+def inverse(cart_cord):
     """
     Returns all sets of joint_angles as a list of lists.
     If the size of the list is 1, there are infinite solutions
