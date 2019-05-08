@@ -11,10 +11,10 @@ def spin_start(self, event):
 	self.spin = spin
 	self.publish(event.angles)
 	self.delta_time += event.delta
-	
+
 	#Send start to player --> Rethink right syncing?
 	rospy.Publisher('StartMusic', Boolean, queue_size=1).publish(True);
-	
+
 def spin(self, event):
 	while rospy.get_rostime() < self._delta_time:
 		time.sleep(self.delta_time - rospy.get_rostime())
@@ -27,7 +27,7 @@ def create_queue():
     obj.delta_time = rospy.get_rostime()
     obj.spin = spin_start
     obj.publish = rospy.Publisher('MultiControllerState', jointAngleMessage, queue_size=1).publish
-    rospy.Subscriber('StartMusic', DeltaAngles, obj.spin)
+    rospy.Subscriber('/Next_joint_angle', DeltaAngles, obj.spin)
     rospy.spin()
 
 if __name__ == '__main__':
@@ -35,4 +35,3 @@ if __name__ == '__main__':
 		create_queue()
 	except rospy.ROSInterruptException:
 		pass
-		
