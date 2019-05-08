@@ -36,7 +36,7 @@ class trajectoryObject():
     def __init__(self):
         self.time = 0.
         self.point_counter = 0
-        self.finished = False
+        self.max_messages = 100
         self.movement = FollowJointTrajectoryGoal()
         self.movement.trajectory.joint_names.extend(['joint_1', 'joint_2', 'joint_3'])
         sefl.movement.goal_tolerance.extend([
@@ -50,6 +50,9 @@ class trajectoryObject():
         self.time += delta_angles_message.delta
         self.movement.trajectory.points.append(create_trajectory_point(delta_angles_message.angles, time))
         self.point_counter += 1
+        if (self.point_counter >= self.max_messages):
+            create_joint_trajectory():
+
 
     def create_joint_trajectory():
         client = actionlib.SimpleActionClient(
@@ -58,7 +61,7 @@ class trajectoryObject():
 
         client.wait_for_server()
         # Send goal
-        client.send_goal(myTrajectory.movement)
+        client.send_goal(self.movement)
         # Wait for arm to perform our movement
         client.wait_for_result()
         # Finally print status of arm, did it work or not?
