@@ -16,8 +16,12 @@ def inverse(cart_cord):
     Returns all sets of joint_angles as a list of lists.
     If the size of the list is 1, there are infinite solutions
     If the size of the list is 2, there are 2 solutions, both on the border of the workspace.
-    If the size of the list is 4, there are 4 solutions, which is the normal case. 
+    If the size of the list is 4, there are 4 solutions, which is the normal case.
     """
+    L1 = 110
+    L2 = 223
+    L3 = 170
+    L4 = 80
     xbase = cart_cord[0]
     ybase = cart_cord[1]
     zbase = cart_cord[2]

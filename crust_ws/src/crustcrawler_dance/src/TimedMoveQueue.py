@@ -26,7 +26,7 @@ class timed_q(object):
 		self.delta_time = rospy.get_rostime()
 		self.spin = spin_start
 		self.publish = rospy.Publisher('MultiControllerState', Bool, queue_size=1).publish   #--> make it publish the right message!
-		
+
 
 # ----------- INIT FUNCTION -----------
 def create_queue():

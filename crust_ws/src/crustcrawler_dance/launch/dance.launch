@@ -7,7 +7,7 @@
 		point_to_point_mapper.py
 		TimedMoveQueue.py
 
-		TODO: complete nodes..
+		TODO: 
 	-->
 	<node
 		name="beat_planner"
