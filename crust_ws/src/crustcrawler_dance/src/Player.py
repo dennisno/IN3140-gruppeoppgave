@@ -20,10 +20,10 @@ def start_music(data):
     global music
     rospy.loginfo(data.data)
     if not data.data:
-		return
-	if not music:
-		rospy.logerr("No music, unable to play!")
-		return
+        return
+    if not music:
+        rospy.logerr("No music, unable to play!")
+        return
     playmusic = pyglet.resource.media(music)
     playmusic.play()
     pyglet.app.run()

@@ -28,7 +28,7 @@ def inverse(cart_cord):
     joint_angles = []
     try:
         if (xbase == 0 and ybase == 0):
-            #Håndterer tilfellet der det er uendelig antall løsninger
+            #Haandterer tilfellet der det er uendelig antall losninger
             angle1 = 0
 
             D = ((zbase-L1)**2 - L2**2 - L3**2)/(2*L2*L3)
@@ -37,7 +37,7 @@ def inverse(cart_cord):
             angle2 = np.arctan2(zbase-L1, 0) - np.arctan2(L3*np.sin(angle3), L2 + L3*np.cos(angle3))
             joint_angles = [[angle1, angle2, angle3]]
         else:
-            #Hvis lengden på armen er akkurat lik avstanden til punktet, får vi kun 2 løsninger
+            #Hvis lengden på armen er akkurat lik avstanden til punktet, faar vi kun 2 løsninger
             if((L2 + L3)**2 == (xbase**2 + ybase**2 + (zbase-L1)**2)):
                 angle1_1 = np.arctan2(ybase, xbase)
                 angle3_1 = 0
@@ -48,7 +48,7 @@ def inverse(cart_cord):
                 angle2_2 = PI - angle2_1
                 joint_angles = [[angle1_1, angle2_1, angle3_1], [angle1_2, angle2_2, angle3_2]]
             else:
-                #Angle(vinkelnavn)_(forover eller revers, basert på hvilken vinkel1)(albue-konfigurasjon nummer 1 eller 2)
+                #Angle(vinkelnavn)_(forover eller revers, basert paa hvilken vinkel1)(albue-konfigurasjon nummer 1 eller 2)
                 #D er et uttrykk til uregning av vinkel 3
                 D = (xbase**2 + ybase**2 + (zbase-L1)**2 - L2**2 - L3**2)/(2*L2*L3)
 
