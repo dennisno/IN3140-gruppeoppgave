@@ -22,8 +22,8 @@ def start_music(data):
 def listener():
     rospy.init_node('music')
     rospy.Subscriber('MusicPub', String, callback)
-    rospy.spin()
-    rospy.init_node('start music')
+    #rospy.spin()
+    #rospy.init_node('start music')
     rospy.Subscriber('StartMusic', Bool, start_music)
     rospy.spin()
 

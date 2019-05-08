@@ -22,7 +22,7 @@ def talker():
     rospy.loginfo('MusicPub')
     publish.publish('LetItBe.wav')
     pub = rospy.Publisher('BeatPlanPub', Float32, queue_size = 100)
-    rospy.init_node('talker', anonymous = True)
+    #rospy.init_node('talker', anonymous = True)
     rate = rospy.Rate(10)
     tempo, beat_frames = read_beat('LetItBe.wav')
     i = 0

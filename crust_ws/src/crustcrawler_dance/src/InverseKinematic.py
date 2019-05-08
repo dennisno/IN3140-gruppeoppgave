@@ -88,7 +88,7 @@ def talker(joint_angles):
     DeltaAngles.angle[2] = joint_angles[2]
     DeltaAngles.delta = joint_angles[3]
     pub = rospy.Publisher('/Next_joint_angle', DeltaAngles, queue_size = 1)
-    rospy.init_node('joint_angles', anonymous = True)
+    #rospy.init_node('joint_angles', anonymous = True)
     rospy.loginfo('joint_angles')
     pub.publish(DeltaPoint)
 
@@ -98,4 +98,3 @@ if __name__ == '__main__':
         listener()
     except rospy.ROSFloaterruptException:
         pass
-    
