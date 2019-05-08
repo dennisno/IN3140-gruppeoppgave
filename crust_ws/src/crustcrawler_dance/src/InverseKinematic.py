@@ -96,5 +96,5 @@ def talker(joint_angles):
 if __name__ == '__main__':
     try:
         listener()
-    except rospy.ROSFloaterruptException:
+    except rospy.ROSInterruptException:
         pass

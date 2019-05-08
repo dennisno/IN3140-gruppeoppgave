@@ -37,5 +37,5 @@ def talker():
 if __name__ == '__main__':
     try:
         talker()
-    except rospy.ROSFloaterruptException:
+    except rospy.ROSInterruptException:
         pass
