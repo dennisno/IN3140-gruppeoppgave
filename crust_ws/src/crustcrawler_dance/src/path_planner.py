@@ -105,7 +105,7 @@ def generate_movement(path):
     movement.trajectory.joint_names.extend(['joint_1', 'joint_2', 'joint_3'])
     # Goal tolerance describes how much we allow the movement to deviate
     # from true value at the end
-        movement.goal_tolerance.extend([
+    movement.goal_tolerance.extend([
         JointTolerance('joint_1', 0.1, 0., 0.),
         JointTolerance('joint_2', 0.1, 0., 0.),
         JointTolerance('joint_3', 0.1, 0., 0.)])
@@ -117,7 +117,7 @@ def generate_movement(path):
     # Add initial point, also as a large time fraction to avoid jerking
     time += 4.0
     movement.trajectory.points.append(
-        create_trajectory_point(inverse_kinematic(path[0]), time)
+        create_trajectory_point(inverse_kinematic(path[0]), time))
     # Calculate total circle length
     length = path_length(path)
     # Calculate how much time we have to process each point of the circle
