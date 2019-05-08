@@ -34,4 +34,7 @@ def play_music(start):
         pyglet.app.run()
 
 if __name__ == '__main__':
-    listener()
+    try:
+        listener()
+    except rospy.ROSFloaterruptException:
+        pass
