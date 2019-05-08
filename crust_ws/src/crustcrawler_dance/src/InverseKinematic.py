@@ -88,14 +88,15 @@ def listener():
     sub = rospy.Subscriber("/Next_point_channel", DeltaPoint, calculate_inverse)
 
 def talker(joint_angles):
-    DeltaAngles.angle[0] = joint_angles[0]
-    DeltaAngles.angle[1] = joint_angles[1]
-    DeltaAngles.angle[2] = joint_angles[2]
-    DeltaAngles.delta = joint_angles[3]
+    DeltaAnglesPub = DeltaAngles()
+    DeltaAnglesPub.angle[0] = joint_angles[0]
+    DeltaAnglesPub.angle[1] = joint_angles[1]
+    DeltaAnglesPub.angle[2] = joint_angles[2]
+    DeltaAnglesPub.delta = joint_angles[3]
     pub = rospy.Publisher('/Next_joint_angle', DeltaAngles, queue_size = 1)
     #rospy.init_node('joint_angles', anonymous = True)
     rospy.loginfo('joint_angles')
-    pub.publish(DeltaPoint)
+    pub.publish(DeltaPointPub)
 
 
 if __name__ == '__main__':
