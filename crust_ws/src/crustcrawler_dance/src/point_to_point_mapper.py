@@ -28,7 +28,7 @@ def publish_new_message(xyz_list, delta_time):
 
 def calculate_new_destination(delta_time):
     global LINK1, LINK2, LINK3, LINK4, FULL_HEIGHT, PI, ROTATION_AMOUNT, INITIAL_STATE, current_angle, current_state
-    
+
     rospy.loginfo("Recieved: %s", delta_time.data)
     #Rotate around link 1:
     current_angle += ROTATION_AMOUNT
@@ -45,7 +45,7 @@ def calculate_new_destination(delta_time):
         current_state = "up"
         new_position = [0.9 * x * math.cos(current_angle), 0.9 * y * math.sin(current_angle), z + math.sqrt(1 - (0.9**2))]
 
-    publish_new_message(new_position, delta_time)
+    publish_new_message(new_position, delta_time.data)
 
 # ----------- INIT FUNCTION -----------
 def listener():
