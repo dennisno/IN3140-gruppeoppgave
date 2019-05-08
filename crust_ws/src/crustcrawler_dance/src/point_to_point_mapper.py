@@ -16,20 +16,18 @@ INITIAL_STATE = [LINK2+LINK3, 0, LINK1]
 current_angle = 0
 current_state = "up"
 
+DeltaPointPublish = rospy.Publisher("/Next_point_channel", DeltaPoint, queue_size = 10).publish
+
 def publish_new_message(xyz_list, delta_time):
-    DeltaPoint.point[0] = xyz_list[0]
-    DeltaPoint.point[1] = xyz_list[1]
-    DeltaPoint.point[2] = xyz_list[2]
-    DeltaPoint.delta = delta_time
+    global DeltaPointPublish
+    msg = DeltaPoint()
+    msg.point = xyz_list
+    msg.delta = delta_time
+    rospy.loginfo("next_point: %s", xyz_list)
+    DeltaPointPublish(msg)
 
-    pub = rospy.Publisher("/Next_point_channel", DeltaPoint, queue_size = 10)
-    #rospy.init_node('next_point', anonymous = True)
-    rospy.loginfo("next_point")
-    pub.publish(DeltaPoint)
-
-def calculate_new_destination(event):
-    global LINK1, LINK2, LINK3, LINK4, FULL_HEIGHT, PI, ROTATION_AMOUNT, INITIAL_STATE, current_angle, current_state
-    delta_time = event.data
+def calculate_new_destination(delta_time):
+    global LINK1, LINK2, LINK3, LINK4, FULL_HEIGHT, ROTATION_AMOUNT, INITIAL_STATE, current_angle, current_state
 
     rospy.loginfo("Recieved: %s", delta_time.data)
     #Rotate around link 1:
@@ -47,11 +45,11 @@ def calculate_new_destination(event):
         current_state = "up"
         new_position = [0.9 * x * math.cos(current_angle), 0.9 * y * math.sin(current_angle), z + math.sqrt(1 - (0.9**2))]
 
-    publish_new_message(new_position, delta_time)
+    publish_new_message(new_position, delta_time.data)
 
 # ----------- INIT FUNCTION -----------
 def listener():
-    sub = rospy.Subscriber("BeatPlanPub", Float32, calculate_new_destination)
+    rospy.Subscriber("BeatPlanPub", Float32, calculate_new_destination)
     rospy.spin()
 
 

@@ -77,30 +77,30 @@ def inverse(cart_cord):
     return joint_angles[0]
 
 def calculate_inverse(data):
-    cart_cord = [data.point[0], data.point[1], data.point[2]]
     delta_time = data.delta
-    joint_angles = inverse(cart_cord)
-    joint_angles.append(delta_time)
-    talker(joint_angles)
+    joint_angles = inverse(data.point)
+    talker(joint_angles, delta_time)
 
+
+DeltaAnglesPublish = rospy.Publisher('/Next_joint_angle', DeltaAngles, queue_size = 1).publish
 # ----------- INIT FUNCTION -----------
 def listener():
-    sub = rospy.Subscriber("/Next_point_channel", DeltaPoint, calculate_inverse)
+    rospy.Subscriber("/Next_point_channel", DeltaPoint, calculate_inverse)
+    rospy.spin()
 
-def talker(joint_angles):
-    DeltaAngles.angle[0] = joint_angles[0]
-    DeltaAngles.angle[1] = joint_angles[1]
-    DeltaAngles.angle[2] = joint_angles[2]
-    DeltaAngles.delta = joint_angles[3]
-    pub = rospy.Publisher('/Next_joint_angle', DeltaAngles, queue_size = 1)
-    #rospy.init_node('joint_angles', anonymous = True)
-    rospy.loginfo('joint_angles')
-    pub.publish(DeltaPoint)
+def talker(joint_angles, delta_time):
+    global DeltaAnglesPublish
+    msg = DeltaAngles()
+    msg.angles = joint_angles
+    msg.delta = float(delta_time)
+
+    rospy.loginfo('joint_angles: %s', joint_angles)
+    DeltaAnglesPublish(msg)
 
 
 if __name__ == '__main__':
     try:
-	rospy.init_node("Points")
+        rospy.init_node("Points", anonymous = True)
         listener()
     except rospy.ROSInterruptException:
         pass
