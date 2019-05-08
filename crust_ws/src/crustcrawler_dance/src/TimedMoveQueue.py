@@ -28,14 +28,15 @@ class timed_q(object):
 		self.publish = rospy.Publisher('MultiControllerState', Bool, queue_size=1).publish   #--> make it publish the right message!
 		
 
+# ----------- INIT FUNCTION -----------
 def create_queue():
-    rospy.init_node('timed_queue', anonymous=True)
     obj = timed_q()
     rospy.Subscriber('/Next_joint_angle', DeltaAngles, obj.spin)
     rospy.spin()
 
 if __name__ == '__main__':
 	try:
+		rospy.init_node('timed_queue', anonymous=True)
 		create_queue()
 	except rospy.ROSInterruptException:
 		pass

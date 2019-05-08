@@ -12,29 +12,32 @@ global music = ""
 
 def callback(data):
     rospy.loginfo(data.data)
-    music = data.data
+    music = data.data 
 
 def start_music(data):
     rospy.loginfo(data.data)
-    play_music(data.data)
+    if not data.data:
+		return
+	if not music:
+		rospy.logerr("No music, unable to play!")
+		return
+    playmusic = pyglet.resource.media(music)
+    playmusic.play()
+    pyglet.app.run()
 
-
+# ----------- INIT FUNCTION -----------
 def listener():
-    rospy.init_node('music')
     rospy.Subscriber('MusicPub', String, callback)
     #rospy.spin()
     #rospy.init_node('start music')
     rospy.Subscriber('StartMusic', Bool, start_music)
     rospy.spin()
 
-def play_music(start):
-    while not start:
-        playmusic = pyglet.resource.media(music)
-        playmusic.play()
-        pyglet.app.run()
+        
 
 if __name__ == '__main__':
     try:
+		rospy.init_node('music')
         listener()
     except rospy.ROSInterruptException:
         pass
