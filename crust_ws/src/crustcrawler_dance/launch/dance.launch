@@ -1,8 +1,16 @@
 <?xml version="1.0"?>
 <launch>
 	<!-- Launch all costum nodes [*.py scripts] -->
-	<node name="beat_planner" pkg="crustcrawler_dance" type="BeatPlanner.py"     output="screen"/>
-	<node name="timed_queue"  pkg="crustcrawler_dance" type="TmedMoveQueue.py"   output="screen"/>
+	<node	 name="beat_planner"
+		 pkg="crustcrawler_dance"
+		 type="src/BeatPlanner.py"    
+		 output="screen"
+	/>
+	<node	 name="timed_queue" 
+		 pkg="crustcrawler_dance"
+		 type="TimedMoveQueue.py"  
+		 output="screen"
+	/>
 
 </launch>
 
