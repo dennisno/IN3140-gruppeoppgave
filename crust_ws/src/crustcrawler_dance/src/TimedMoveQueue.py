@@ -5,8 +5,7 @@ import rospy
 import time
 
 from std_msgs.msg import Bool
-from DeltaPoint.msg import DeltaPoint
-from DeltaAngles.msg import DeltaAngles
+from crustcrawler_dance.msg import DeltaAngles
 
 
 def spin_start(self, event):

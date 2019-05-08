@@ -3,8 +3,8 @@
 from std_msgs.msg import Float32
 from std_msgs.msg import String
 from std_msgs.msg import Bool
-from DeltaPoint.msg import DeltaPoint
-from DeltaAngles.msg import DeltaAngles
+from crustcrawler_dance.msg import DeltaPoint
+from crustcrawler_dance.msg import DeltaAngles
 
 import rospy
 import pyglet
