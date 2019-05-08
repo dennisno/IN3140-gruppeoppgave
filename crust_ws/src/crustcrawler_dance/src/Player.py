@@ -8,7 +8,7 @@ import pyglet
 
 
 global music = ""
-#!/usr/bin/env python
+
 
 
 
