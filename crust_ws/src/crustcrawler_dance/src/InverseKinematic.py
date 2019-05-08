@@ -37,7 +37,6 @@ def inverse(cart_cord):
             angle2 = np.arctan2(zbase-L1, 0) - np.arctan2(L3*np.sin(angle3), L2 + L3*np.cos(angle3))
             joint_angles = [[angle1, angle2, angle3]]
         else:
-            #Hvis lengden på armen er akkurat lik avstanden til punktet, faar vi kun 2 løsninger
             if((L2 + L3)**2 == (xbase**2 + ybase**2 + (zbase-L1)**2)):
                 angle1_1 = np.arctan2(ybase, xbase)
                 angle3_1 = 0
