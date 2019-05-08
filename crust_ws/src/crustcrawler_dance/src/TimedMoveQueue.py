@@ -7,33 +7,39 @@ import time
 from std_msgs.msg import Bool
 from crustcrawler_dance.msg import DeltaAngles
 
+func = None
+wait_time = 0
+DeltaAnglesPublish = rospy.Publisher('MultiControllerState', DeltaAngles, queue_size=1).publish
 
-def spin_start(self, event):
+def callback(event):
+    global func
+    func(event)
+
+def spin_start(event):
     #After this launch function make shure the object points to the correct spin function
-    self.spin = spin
-    self.publish(event)
-    self.delta_time += event.delta
+    global DeltaAnglesPublish, wait_time, func
+    func = spin
+    rospy.sleep(5)
+    DeltaAnglesPublish(event)
+    wait_time = event.delta + (rospy.get_time() * 100)
     
     #Send start to player --> Rethink right syncing?
     rospy.Publisher('StartMusic', Bool, queue_size=1).publish(True);
 
-def spin(self, event):
-    while rospy.get_rostime() < self.delta_time:
-        time.sleep(self.delta_time - rospy.get_rostime())
-        self.publish(event)
-        self.delta_time += event.delta
+def spin(event):
+    global DeltaAnglesPublish, wait_time
 
-class timed_q(object):
-    def __init__(self):
-        self.delta_time = rospy.get_rostime()
-        self.spin = spin_start
-        self.publish = rospy.Publisher('MultiControllerState', DeltaAngles, queue_size=1).publish   #--> make it publish the right message!
-
+    while (100 * rospy.get_time()) < wait_time:
+        rospy.sleep((wait_time/100) - rospy.get_time())
+    rospy.loginfo("Event sendt to controller!")
+    DeltaAnglesPublish(event)
+    wait_time += event.delta
 
 # ----------- INIT FUNCTION -----------
 def create_queue():
-    obj = timed_q()
-    rospy.Subscriber('/Next_joint_angle', DeltaAngles, obj.spin)
+    global func
+    func = spin_start
+    rospy.Subscriber('/Next_joint_angle', DeltaAngles, callback)
     rospy.spin()
 
 if __name__ == '__main__':
