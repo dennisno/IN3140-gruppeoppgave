@@ -16,7 +16,7 @@ INITIAL_STATE = [LINK2+LINK3, 0, LINK1]
 current_angle = 0
 current_state = "up"
 
-DeltaPointPublish = None #Publish with "DeltaPointPublish(msg)
+DeltaPointPublish = rospy.Publisher("/Next_point_channel", DeltaPoint, queue_size = 10).publish
 
 def publish_new_message(xyz_list, delta_time):
     global DeltaPointPublish
@@ -27,7 +27,7 @@ def publish_new_message(xyz_list, delta_time):
     DeltaPointPublish(msg)
 
 def calculate_new_destination(delta_time):
-    global LINK1, LINK2, LINK3, LINK4, FULL_HEIGHT, PI, ROTATION_AMOUNT, INITIAL_STATE, current_angle, current_state
+    global LINK1, LINK2, LINK3, LINK4, FULL_HEIGHT, ROTATION_AMOUNT, INITIAL_STATE, current_angle, current_state
 
     rospy.loginfo("Recieved: %s", delta_time.data)
     #Rotate around link 1:
@@ -49,9 +49,7 @@ def calculate_new_destination(delta_time):
 
 # ----------- INIT FUNCTION -----------
 def listener():
-    global DeltaPointPublish
-    DeltaPointPublish = rospy.Publisher("/Next_point_channel", DeltaPoint, queue_size = 10).publish
-    sub = rospy.Subscriber("BeatPlanPub", Float32, calculate_new_destination)
+    rospy.Subscriber("BeatPlanPub", Float32, calculate_new_destination)
     rospy.spin()
 
 
