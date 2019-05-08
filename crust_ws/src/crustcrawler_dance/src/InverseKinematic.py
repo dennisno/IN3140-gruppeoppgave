@@ -86,7 +86,8 @@ DeltaAnglesPublish = None
 def listener():
     global DeltaAnglesPublish
     DeltaAnglesPublish = rospy.Publisher('/Next_joint_angle', DeltaAngles, queue_size = 1).publish
-    sub = rospy.Subscriber("/Next_point_channel", DeltaPoint, calculate_inverse)
+    rospy.Subscriber("/Next_point_channel", DeltaPoint, calculate_inverse)
+    rospy.spin()
 
 def talker(joint_angles, delta_time):
     global DeltaAnglesPublish
