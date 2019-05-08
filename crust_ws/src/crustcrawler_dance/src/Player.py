@@ -7,7 +7,7 @@ import pyglet
 import rospkg
 
 
-s_path = rospkg.RosPack().get_path('crustcrawler_dance') + "/music/" #LetItBe.wav"
+s_path = rospkg.RosPack().get_path('crustcrawler_dance') + "/music/Alan_Walker_-_Faded_Instrumental_Free_download-5LsiZhZHkTM.wav" #LetItBe.wav"
 #song = pyglet.resource.media(s_path)
 song = pyglet.media.load(s_path)
 
