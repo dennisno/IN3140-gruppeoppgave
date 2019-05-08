@@ -1,6 +1,6 @@
 from std_msgs.msg import Float32
 from std_msgs.msg import String
-from std_msgs.msg import Boolean
+from std_msgs.msg import Bool
 from DeltaPoint.msg import DeltaPoint
 
 import rospy
