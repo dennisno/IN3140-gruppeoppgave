@@ -6,11 +6,11 @@ from std_msgs.msg import Bool
 from crustcrawler_dance.msg import DeltaPoint
 from crustcrawler_dance.msg import DeltaAngles
 
-import math
 import rospy
 import pyglet
 import numpy as np
 import warnings
+from numpy import pi as PI
 
 def inverse(cart_cord):
     """

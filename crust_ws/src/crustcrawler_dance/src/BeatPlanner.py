@@ -21,13 +21,13 @@ def read_beat(filename):
 # ----------- INIT FUNCTION -----------
 def talker():
     global music_filepath
-    publish = rospy.Publisher('MusicPub', String, queue_size = 1)
+    song_path = music_filepath + 'LetItBe.wav'
+    rospy.Publisher('MusicPub', String, queue_size = 1).publish(song_path)
     rospy.loginfo('MusicPub')
-    publish.publish('LetItBe.wav')
+    
     pub = rospy.Publisher('BeatPlanPub', Float32, queue_size = 100)
-    #rospy.init_node('talker', anonymous = True)
-    rate = rospy.Rate(10)
-    tempo, beat_frames = read_beat(music_filepath + 'LetItBe.wav')
+    #rate = rospy.Rate(10)
+    tempo, beat_frames = read_beat(song_path)
     i = 0
     shorted_down_beat_frame = beat_frames[::2]
     while not rospy.is_shutdown():
@@ -35,7 +35,7 @@ def talker():
         i += 1
         rospy.loginfo("D_beat " + str(time_of_beat))
         pub.publish(time_of_beat)
-        rate.sleep()
+        #rate.sleep()
 
 if __name__ == '__main__':
     try:
