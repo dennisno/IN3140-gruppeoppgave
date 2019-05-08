@@ -3,7 +3,7 @@
 	<!-- Launch all costum nodes [*.py scripts] -->
 	<node	 name="beat_planner"
 		 pkg="crustcrawler_dance"
-		 type="src/BeatPlanner.py"    
+		 type="BeatPlanner.py"    
 		 output="screen"
 	/>
 	<node	 name="timed_queue" 
