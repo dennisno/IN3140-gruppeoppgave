@@ -1,16 +1,28 @@
 <?xml version="1.0"?>
 <launch>
 	<!-- Launch all costum nodes [*.py scripts] -->
-	<node	 name="beat_planner"
-		 pkg="crustcrawler_dance"
-		 type="BeatPlanner.py"    
-		 output="screen"
+	<!-- 	BeatPlanner.py	
+		InverseKinematic.py  
+		Player.py	
+		point_to_point_mapper.py  
+		TimedMoveQueue.py
+
+		--TODO: complete nodes..
+	-->
+	<node	 
+		name="beat_planner"
+		pkg="crustcrawler_dance"
+		type="BeatPlanner.py"    
+		output="screen"
 	/>
-	<node	 name="timed_queue" 
-		 pkg="crustcrawler_dance"
-		 type="TimedMoveQueue.py"  
-		 output="screen"
+	<node	
+		name="timed_queue" 
+		pkg="crustcrawler_dance"
+		type="TimedMoveQueue.py"  
+		output="screen"
 	/>
+	<node	
+		name="
 
 </launch>
 
