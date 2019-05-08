@@ -80,23 +80,23 @@ def calculate_inverse(data):
     cart_cord = [data.point[0], data.point[1], data.point[2]]
     delta_time = data.delta
     joint_angles = inverse(cart_cord)
-    joint_angles.append(delta_time)
-    talker(joint_angles)
+    talker(joint_angles, delta_time)
 
+DeltaAnglesPublish = None
 # ----------- INIT FUNCTION -----------
 def listener():
+    global DeltaAnglesPublish
+    DeltaAnglesPublish = rospy.Publisher('/Next_joint_angle', DeltaAngles, queue_size = 1).publish
     sub = rospy.Subscriber("/Next_point_channel", DeltaPoint, calculate_inverse)
 
-def talker(joint_angles):
-    DeltaAnglesPub = DeltaAngles()
-    DeltaAnglesPub.angle[0] = joint_angles[0]
-    DeltaAnglesPub.angle[1] = joint_angles[1]
-    DeltaAnglesPub.angle[2] = joint_angles[2]
-    DeltaAnglesPub.delta = joint_angles[3]
-    pub = rospy.Publisher('/Next_joint_angle', DeltaAngles, queue_size = 1)
-    #rospy.init_node('joint_angles', anonymous = True)
-    rospy.loginfo('joint_angles')
-    pub.publish(DeltaPointPub)
+def talker(joint_angles, delta_time):
+    global DeltaAnglesPublish
+    msg = DeltaAngles()
+    msg.angles = joint_angles
+    msg.delta = delta_time
+    
+    rospy.loginfo('joint_angles: %s', joint_angles)
+    DeltaAnglesPublish(msg)
 
 
 if __name__ == '__main__':
