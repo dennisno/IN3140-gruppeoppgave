@@ -4,12 +4,14 @@ from std_msgs.msg import String
 from std_msgs.msg import Bool
 import rospy
 import pyglet
+import rospkg
 
 
+s_path = rospkg.RosPack().get_path('crustcrawler_dance') + "/music/" #LetItBe.wav"
+#song = pyglet.resource.media(s_path)
+song = pyglet.media.load(s_path)
 
-song = None
-
-def callback(data):
+def set_song(data):
     global song
     rospy.loginfo("Player ready with: %s", data.data)
     song = pyglet.resource.media(data.data)
@@ -19,19 +21,19 @@ def start_music(data):
     global song
     rospy.loginfo(data.data)
     if not data.data:
-        rospy.loginfo("Player got False Start command!")
+        rospy.loginfo("Player: Wait command!")
         return
     if not song:
-        rospy.logerr("No music, unable to play!")
+        rospy.logerr("Player: No music, unable to play!")
         return
-    rospy.loginfo("Starting to play Music!")
+    rospy.loginfo("Player: Starting to play Music!")
     song.play()
     pyglet.app.run()
 
 # ----------- INIT FUNCTION -----------
 def listener():
-    rospy.Subscriber('MusicPub', String, callback)
-    rospy.Subscriber('StartMusic', Bool, start_music)
+    rospy.Subscriber('/MusicPub', String, set_song)
+    rospy.Subscriber('/StartMusic', Bool, start_music)
     rospy.spin()
 
 

@@ -24,7 +24,7 @@ def spin_start(event):
     wait_time = event.delta + (rospy.get_time() * 100)
     
     #Send start to player --> Rethink right syncing?
-    rospy.Publisher('StartMusic', Bool, queue_size=1).publish(True);
+    rospy.Publisher('/StartMusic', Bool, queue_size=1).publish(True);
 
 def spin(event):
     global DeltaAnglesPublish, wait_time
@@ -39,6 +39,7 @@ def spin(event):
 def create_queue():
     global func
     func = spin_start
+    rospy.Publisher('/StartMusic', Bool, queue_size=1).publish(False);
     rospy.Subscriber('/Next_joint_angle', DeltaAngles, callback)
     rospy.spin()
 

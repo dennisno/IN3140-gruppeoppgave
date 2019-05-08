@@ -3,6 +3,7 @@
 
 from std_msgs.msg import Float32
 from std_msgs.msg import String
+from std_msgs.msg import Bool
 import rospkg
 import rospy
 import librosa
@@ -21,21 +22,23 @@ def read_beat(filename):
 # ----------- INIT FUNCTION -----------
 def talker():
     global music_filepath
-    song_path = music_filepath + 'LetItBe.wav'
-    rospy.Publisher('MusicPub', String, queue_size = 1).publish(song_path)
-    rospy.loginfo('MusicPub')
-    
-    pub = rospy.Publisher('BeatPlanPub', Float32, queue_size = 100)
-    #rate = rospy.Rate(10)
+    song_path = music_filepath + "" #'LetItBe.wav' #143 BPM -> 1 min = 143 beats 1000/143 = delta_beat
     tempo, beat_frames = read_beat(song_path)
-    i = 0
-    shorted_down_beat_frame = beat_frames[::2]
+
+    rospy.Publisher('/StartMusic', Bool, queue_size=1).publish(False)
+    rospy.Publisher('/MusicPub', String, queue_size=1).publish(song_path)
+    rospy.loginfo('MusicPub: %s', song_path)
+    
+    
+
+    pub = rospy.Publisher('BeatPlanPub', Float32, queue_size = 100)
+    i = 0 
+    shorted_down_beat_frame = beat_frames #[::2]
     while not rospy.is_shutdown():
-        time_of_beat = shorted_down_beat_frame[i+1] - shorted_down_beat_frame[i]
+        time_of_beat = (shorted_down_beat_frame[i+1] - shorted_down_beat_frame[i]) * 2
         i += 1
-        rospy.loginfo("D_beat " + str(time_of_beat))
+        rospy.loginfo("Delta_beat: %s", time_of_beat )
         pub.publish(time_of_beat)
-        #rate.sleep()
 
 if __name__ == '__main__':
     try:
