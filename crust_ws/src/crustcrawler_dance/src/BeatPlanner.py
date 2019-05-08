@@ -36,7 +36,7 @@ def talker():
 
 if __name__ == '__main__':
     try:
-		rospy.init_node('publishmusic',anonymous = True)
+	rospy.init_node('publishmusic',anonymous = True)
         talker()
     except rospy.ROSInterruptException:
         pass

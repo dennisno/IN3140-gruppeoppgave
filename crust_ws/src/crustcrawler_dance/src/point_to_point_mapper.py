@@ -55,7 +55,7 @@ def listener():
 
 if __name__ == '__main__':
     try:
-		rospy.init_node("point_to_point_mapper")
+	rospy.init_node("point_to_point_mapper")
         listener()
     except rospy.ROSInterruptException:
         pass

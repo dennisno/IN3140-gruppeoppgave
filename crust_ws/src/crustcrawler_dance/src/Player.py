@@ -7,14 +7,17 @@ import rospy
 import pyglet
 
 
-global music = ""
+ 
+music = ""
 
 
 def callback(data):
+    global music
     rospy.loginfo(data.data)
     music = data.data
 
 def start_music(data):
+    global music
     rospy.loginfo(data.data)
     if not data.data:
 		return
@@ -37,7 +40,7 @@ def listener():
 
 if __name__ == '__main__':
     try:
-		rospy.init_node('music')
+	rospy.init_node('music')
         listener()
     except rospy.ROSInterruptException:
         pass

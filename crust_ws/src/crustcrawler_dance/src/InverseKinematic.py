@@ -100,7 +100,7 @@ def talker(joint_angles):
 
 if __name__ == '__main__':
     try:
-		rospy.init_node("Points")
+	rospy.init_node("Points")
         listener()
     except rospy.ROSInterruptException:
         pass
