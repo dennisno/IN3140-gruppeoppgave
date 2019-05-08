@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import math
+from math import pi as PI
 import rospy
 from std_msgs.msg import Float32
 from crustcrawler_dance.msg import DeltaPoint
@@ -9,7 +11,6 @@ LINK2 = 22.3
 LINK3 = 17
 LINK4 = 8
 FULL_HEIGHT = LINK1 + LINK2 + LINK3 + (math.sin(PI/4)*LINK4)
-PI = math.pi
 ROTATION_AMOUNT = 2*PI/20
 INITIAL_STATE = [LINK2+LINK3, 0, LINK1]
 current_angle = 0
@@ -26,8 +27,9 @@ def publish_new_message(xyz_list, delta_time):
     rospy.loginfo("next_point")
     pub.publish(DeltaPoint)
 
-def calculate_new_destination(delta_time):
+def calculate_new_destination(event):
     global LINK1, LINK2, LINK3, LINK4, FULL_HEIGHT, PI, ROTATION_AMOUNT, INITIAL_STATE, current_angle, current_state
+    delta_time = event.data
 
     rospy.loginfo("Recieved: %s", delta_time.data)
     #Rotate around link 1:
@@ -37,12 +39,13 @@ def calculate_new_destination(delta_time):
 
     #Move up/down
     #Currently changes between "full length" and "full length" but 0.9 in x/y dir and higher
+    x, y, z, = INITIAL_STATE[0], INITIAL_STATE[1], INITIAL_STATE[2]
     if (current_state == "up"):
         current_state = "down"
-        new_position = [INITIAL_STATE[0]*math.cos(current_angle), INITIAL_STATE[1]*math.sin(current_angle), INITIAL_STATE[2]]
+        new_position = [ x * math.cos(current_angle), y * math.sin(current_angle), z]
     else:
         current_state = "up"
-        new_position = [0.9*INITIAL_STATE[0]*math.cos(current_angle), 0.9*INITIAL_STATE[1]*math.sin(current_angle), INITIAL_STATE[2]+math.sqrt(1-0.(9**2))]
+        new_position = [0.9 * x * math.cos(current_angle), 0.9 * y * math.sin(current_angle), z + math.sqrt(1 - (0.9**2))]
 
     publish_new_message(new_position, delta_time)
 
