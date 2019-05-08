@@ -2,7 +2,7 @@
 
 from std_msgs.msg import Float32
 from std_msgs.msg import String
-from std_msgs.msg import Boolean
+from std_msgs.msg import Bool
 import rospy
 import pyglet
 
@@ -24,7 +24,7 @@ def listener():
     rospy.Subscriber('MusicPub', String, callback)
     rospy.spin()
     rospy.init_node('start music')
-    rospy.Subscriber('StartMusic', Boolean, start_music)
+    rospy.Subscriber('StartMusic', Bool, start_music)
     rospy.spin()
 
 def play_music(start):
