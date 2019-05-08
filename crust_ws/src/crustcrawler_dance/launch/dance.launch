@@ -23,21 +23,21 @@
 	/>
 	<node
 		name="inverse_kinematic"
-    pkg="crustcrawler_dance"
-    type="InverseKinematic.py"
-    output="screen"
-  />
-  <node
-    name="music_player"
-    pkg="crustcrawler_dance"
-    type="Player.py"
-    output="screen"
-  />
-  <node
-    name="point_to_point"
-    pkg="crustcrawler_dance"
-    type="point_to_point_mapper.py"
-    output="screen"
-  />
+    		pkg="crustcrawler_dance"
+    		type="InverseKinematic.py"
+    		output="screen"
+  	/>
+  	<node
+    		name="music_player"
+    		pkg="crustcrawler_dance"
+    		type="Player.py"
+    		output="screen"
+  	/>
+  	<node
+    		name="point_to_point"
+    		pkg="crustcrawler_dance"
+    		type="point_to_point_mapper.py"
+    		output="screen"
+  	/>
 
 </launch>
