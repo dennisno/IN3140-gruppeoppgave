@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 import rospy
 from std_msgs.msg import Float32
 from DeltaPoint.msg import DeltaPoint
@@ -45,9 +46,8 @@ def calculate_new_destination(delta_time):
 
     publish_new_message(new_position, delta_time)
 
-
+# ----------- INIT FUNCTION -----------
 def listener():
-    rospy.init_node("point_to_point_mapper")
     sub = rospy.Subscriber("BeatPlanPub", Float32, calculate_new_destination)
     rospy.spin()
 
@@ -55,6 +55,7 @@ def listener():
 
 if __name__ == '__main__':
     try:
+		rospy.init_node("point_to_point_mapper")
         listener()
     except rospy.ROSInterruptException:
         pass

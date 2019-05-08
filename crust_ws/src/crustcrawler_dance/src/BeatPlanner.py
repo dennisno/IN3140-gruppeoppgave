@@ -14,11 +14,11 @@ def read_beat(filename):
     #    Store the sampling rate as `sr`
 
     tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
-    return tempo, beat_frames
+    return tempo, beat_frames 
 
+# ----------- INIT FUNCTION -----------
 def talker():
     publish = rospy.Publisher('MusicPub', String, queue_size = 1)
-    rospy.init_node('publishmusic',anonymous = True)
     rospy.loginfo('MusicPub')
     publish.publish('LetItBe.wav')
     pub = rospy.Publisher('BeatPlanPub', Float32, queue_size = 100)
@@ -36,6 +36,7 @@ def talker():
 
 if __name__ == '__main__':
     try:
+		rospy.init_node('publishmusic',anonymous = True)
         talker()
     except rospy.ROSInterruptException:
         pass

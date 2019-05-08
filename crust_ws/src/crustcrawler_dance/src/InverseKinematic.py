@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 from std_msgs.msg import Float32
 from std_msgs.msg import String
 from std_msgs.msg import Bool
@@ -15,7 +16,7 @@ def inverse(cart_cord):
     Returns all sets of joint_angles as a list of lists.
     If the size of the list is 1, there are infinite solutions
     If the size of the list is 2, there are 2 solutions, both on the border of the workspace.
-    If the size of the list is 4, there are 4 solutions, which is the normal case.
+    If the size of the list is 4, there are 4 solutions, which is the normal case. 
     """
     xbase = cart_cord[0]
     ybase = cart_cord[1]
@@ -78,8 +79,8 @@ def calculate_inverse(data):
     joint_angles.append(delta_time)
     talker(joint_angles)
 
+# ----------- INIT FUNCTION -----------
 def listener():
-    rospy.init_node("Points")
     sub = rospy.Subscriber("/Next_point_channel", DeltaPoint, calculate_inverse)
 
 def talker(joint_angles):
@@ -95,6 +96,7 @@ def talker(joint_angles):
 
 if __name__ == '__main__':
     try:
+		rospy.init_node("Points")
         listener()
     except rospy.ROSInterruptException:
         pass
