@@ -7,7 +7,7 @@ import rospy
 import librosa
 
 
-def read_beat(self, filename):
+def read_beat(filename):
 
     y, sr = librosa.load(filename)
     #    Load the audio as a waveform `y`
