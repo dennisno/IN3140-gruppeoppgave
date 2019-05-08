@@ -92,7 +92,7 @@ def talker(joint_angles, delta_time):
     global DeltaAnglesPublish
     msg = DeltaAngles()
     msg.angles = joint_angles
-    msg.delta = delta_time
+    msg.delta = float(delta_time)
 
     rospy.loginfo('joint_angles: %s', joint_angles)
     DeltaAnglesPublish(msg)
