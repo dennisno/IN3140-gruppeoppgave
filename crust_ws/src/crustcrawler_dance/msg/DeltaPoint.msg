@@ -1,5 +1,5 @@
 #Delta time
-uint64 delta
+float32 delta
 
-#Position
-float32[3] position
+#Point 3D
+float32[3] point
