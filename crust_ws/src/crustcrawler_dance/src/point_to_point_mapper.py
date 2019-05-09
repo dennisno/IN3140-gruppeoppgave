@@ -29,7 +29,7 @@ def publish_new_message(xyz_list, delta_time):
 def calculate_new_destination(delta_time):
     global LINK1, LINK2, LINK3, LINK4, FULL_HEIGHT, ROTATION_AMOUNT, INITIAL_STATE, current_angle, current_state
 
-    rospy.loginfo("Recieved: %s", delta_time.data)
+    #rospy.loginfo("Recieved: %s", delta_time.data)
     #Rotate around link 1:
     current_angle += ROTATION_AMOUNT
     if (current_angle >= 2*PI):

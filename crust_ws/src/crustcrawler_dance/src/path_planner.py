@@ -8,6 +8,7 @@ Crustcrawler platform
 
 from __future__ import print_function
 from std_msgs.msg import UInt32
+from std_msgs.msg import Bool
 from control_msgs.msg import FollowJointTrajectoryAction
 from control_msgs.msg import FollowJointTrajectoryGoal
 from control_msgs.msg import JointTolerance
@@ -36,8 +37,8 @@ def create_trajectory_point(position, seconds):
 class trajectoryObject():
     def __init__(self):
         self.time = 0.
-        self.point_counter = 0
-        self.max_messages = 100
+        self.point_counter = 1 # first beat is beat 1
+        self.max_messages = 385 # "hard-coded" as Beat planner still does not transmit this info correctly
         self.movement = FollowJointTrajectoryGoal()
         self.movement.trajectory.joint_names.extend(['joint_1', 'joint_2', 'joint_3'])
         self.movement.goal_tolerance.extend([
@@ -54,19 +55,22 @@ class trajectoryObject():
         self.time += delta_angles_message.delta
         self.movement.trajectory.points.append(create_trajectory_point(delta_angles_message.angles, self.time))
         self.point_counter += 1
+        rospy.loginfo("Beats recieved: %s / %s", self.point_counter, self.max_messages)
         if (self.point_counter >= self.max_messages):
             self.create_joint_trajectory()
+            self.point_counter = 0
 
 
     def create_joint_trajectory(self):
         rospy.loginfo("Now ready to move the arm!")
+        rospy.Publisher('/player/start_music', Bool, queue_size=1).publish(data=True)
         client = actionlib.SimpleActionClient(
                 '/crustcrawler/controller/follow_joint_trajectory',
                 FollowJointTrajectoryAction)
 		
         client.wait_for_server()
         #Send start to player --> Rethink right syncing?
-        rospy.Publisher('/player/start_music', Bool, queue_size=1).publish(True);
+        #rospy.Publisher('/player/start_music', Bool, queue_size=1).publish(data=True);
       
         # Send goal
         client.send_goal(self.movement)

@@ -2,6 +2,8 @@
 
 from std_msgs.msg import String
 from std_msgs.msg import Bool
+
+from crustcrawler_dance.msg import MusicString
 import rospy
 import pyglet
 import rospkg
@@ -13,8 +15,8 @@ song = pyglet.media.load(s_path)
 
 def set_song(data):
     global song
-    rospy.loginfo("Player ready with: %s", data.data)
-    song = pyglet.resource.media(data.data)
+    rospy.loginfo("Player ready with: %s", data.file)
+    song = pyglet.resource.media(data.file)
 
 
 def start_music(data):
@@ -32,7 +34,7 @@ def start_music(data):
 
 # ----------- INIT FUNCTION -----------
 def listener():
-    rospy.Subscriber('/player/set_music', String, set_song)
+    rospy.Subscriber('/player/set_music', MusicString, set_song)
     rospy.Subscriber('/player/start_music', Bool, start_music)
     rospy.spin()
 

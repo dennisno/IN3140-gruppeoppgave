@@ -6,6 +6,8 @@ from std_msgs.msg import String
 from std_msgs.msg import Bool
 from std_msgs.msg import UInt32
 
+from crustcrawler_dance.msg import MusicString
+
 import rospkg
 import rospy
 import librosa
@@ -28,27 +30,40 @@ def talker():
     
     tempo, beat_frames = read_beat(song_path)
     shorted_down_beat_frame = beat_frames #[::2]
-    rospy.loginfo("Found a total of %s beats", len(shorted_down_beat_frame) )
+    num_beats = len(shorted_down_beat_frame)
+    rospy.loginfo("Found a total of %s beats", num_beats )
     rospy.loginfo('MusicPub: %s', song_path)
-    max_points = rospy.Publisher("/planner/controller_max_points", UInt32, queue_size=2)
-    max_points.publish( len(shorted_down_beat_frame) )
-    max_points.publish( len(shorted_down_beat_frame) )
     
-    music_start = rospy.Publisher('/player/start_music', Bool, queue_size=2)
-    music_start.publish(False)
-    music_start.publish(False)
+    # Setting the number of expected messages in the 'path_planner' node
+    pub = rospy.Publisher("/planner/controller_max_points", UInt32, queue_size=1)
+    msg = UInt32()
+    msg.data = num_beats
+    pub.publish( msg )
+    pub.publish( msg )
+        
+    # Really not needed, just an extra check to see if we got connection to the 'player' node
+    pub = rospy.Publisher('/player/start_music', Bool, queue_size=1)
+    msg = Bool()
+    msg.data = False
+    pub.publish( msg )
+    pub.publish( msg )
     
-    set_music = rospy.Publisher('/player/set_music', String, queue_size=2)
-    set_music.publish(song_path)
-    set_music.publish(song_path)
+    # Setting the song in the 'player' node
+    pub = rospy.Publisher('/player/set_music', MusicString, queue_size=1)
+    msg = MusicString()
+    msg.file = song_path
+    pub.publish( msg )
+    pub.publish( msg )
     
+    # Starting to send messages down the message chain: this > point_2_point > inverse_kinematics > path_planner
     i = 0    
-    r = rospy.Rate(50) # Hz
+    r = rospy.Rate(30) # Hz
     pub = rospy.Publisher('/planner/delta_beat', Float32, queue_size = 100)
+    rospy.sleep(5)
     while not rospy.is_shutdown():
         time_of_beat = (shorted_down_beat_frame[i+1] - shorted_down_beat_frame[i]) * 2
         i += 1
-        rospy.loginfo("Delta_beat: %s", time_of_beat )
+        rospy.loginfo("Sending beat: %s / %s, Duration: %s", i+1, num_beats, time_of_beat )
         pub.publish(time_of_beat)
         r.sleep()
 
