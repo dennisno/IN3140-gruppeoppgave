@@ -5,7 +5,8 @@
 		InverseKinematic.py
 		Player.py
 		point_to_point_mapper.py
-		TimedMoveQueue.py
+		-- TimedMoveQueue.py
+		path_planner.py
 
 		TODO: 
 	-->
@@ -15,12 +16,12 @@
 		type="BeatPlanner.py"
 		output="screen"
 	/>
-	<node
+	<!-- node
 		name="timed_queue"
 		pkg="crustcrawler_dance"
 		type="TimedMoveQueue.py"
 		output="screen"
-	/>
+	/-->
 	<node
 		name="inverse_kinematic"
     		pkg="crustcrawler_dance"
@@ -39,5 +40,11 @@
     		type="point_to_point_mapper.py"
     		output="screen"
   	/>
+	<node
+		name="path_planner"
+		pkg="crustcrawler_dance"
+		type="path_planner.py"
+		output="screen"
+	/>
 
 </launch>

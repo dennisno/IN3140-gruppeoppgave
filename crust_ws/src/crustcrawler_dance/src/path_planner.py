@@ -7,6 +7,7 @@ Crustcrawler platform
 """
 
 from __future__ import print_function
+from std_msgs.msg import UInt32
 from control_msgs.msg import FollowJointTrajectoryAction
 from control_msgs.msg import FollowJointTrajectoryGoal
 from control_msgs.msg import JointTolerance
@@ -44,7 +45,10 @@ class trajectoryObject():
             JointTolerance('joint_2', 0.1, 0., 0.),
             JointTolerance('joint_3', 0.1, 0., 0.)])
         self.movement.goal_time_tolerance = rospy.Duration(0.5)
-
+	
+	def get_message_cap(self, int_msg):
+		rospy.loginfo("Trajectory Planner: Got number of trajectory points: %s", int_msg.data)
+		self.max_messages = int_msg.data
 
     def add_point(delta_angles_message):
         self.time += delta_angles_message.delta
@@ -58,8 +62,10 @@ class trajectoryObject():
         client = actionlib.SimpleActionClient(
                 '/crustcrawler/controller/follow_joint_trajectory',
                 FollowJointTrajectoryAction)
-
+		
         client.wait_for_server()
+        #Send start to player --> Rethink right syncing?
+        rospy.Publisher('/StartMusic', Bool, queue_size=1).publish(True);
         # Send goal
         client.send_goal(self.movement)
         # Wait for arm to perform our movement
@@ -73,9 +79,12 @@ class trajectoryObject():
                   .format(result.error_string, result.error_code))
         return result.error_code
 
+
 def talker(point_description):
     myTrajectory = trajectoryObject()
-    rospy.Subscriber("MultiControllerState", DeltaAngles, myTrajectory.add_point)
+    rospy.Subscriber('/Next_joint_angle', DeltaAngles, myTrajectory.add_point)
+    # rospy.Subscriber("MultiControllerState", DeltaAngles, myTrajectory.add_point) #--By passing Timed Move Queue, as the entire path is compiled at once!
+    rospy.subscriber("ControllerMaxPoints", UInt32, myTrajectory.get_message_cap)
     rospy.spin()
 
 

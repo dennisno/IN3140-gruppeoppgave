@@ -34,6 +34,7 @@ def talker():
     pub = rospy.Publisher('BeatPlanPub', Float32, queue_size = 100)
     i = 0 
     shorted_down_beat_frame = beat_frames #[::2]
+    rospy.Publisher("ControllerMaxPoints", UInt32, queue_size=1).publish( len(shorted_down_beat_frame)
     while not rospy.is_shutdown():
         time_of_beat = (shorted_down_beat_frame[i+1] - shorted_down_beat_frame[i]) * 2
         i += 1
