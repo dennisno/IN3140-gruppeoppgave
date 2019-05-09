@@ -87,4 +87,4 @@ if __name__ == '__main__':
         rospy.init_node("Path_planner")
         talker()
     except rospy.ROSInterruptException:
-        sys.exit("Program aborted during circle drawing")
+        sys.exit("Program aborted during movement")
