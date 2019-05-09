@@ -5,7 +5,7 @@
 		InverseKinematic.py
 		Player.py
 		point_to_point_mapper.py
-		-- TimedMoveQueue.py
+		XX TimedMoveQueue.py
 		path_planner.py
 
 		TODO: 

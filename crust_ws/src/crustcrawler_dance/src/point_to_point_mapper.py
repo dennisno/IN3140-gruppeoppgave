@@ -16,7 +16,7 @@ INITIAL_STATE = [LINK2+LINK3, 0, LINK1]
 current_angle = 0
 current_state = "up"
 
-DeltaPointPublish = rospy.Publisher("/Next_point_channel", DeltaPoint, queue_size = 10).publish
+DeltaPointPublish = rospy.Publisher("/mapper/point_delta", DeltaPoint, queue_size = 10).publish
 
 def publish_new_message(xyz_list, delta_time):
     global DeltaPointPublish
@@ -49,14 +49,14 @@ def calculate_new_destination(delta_time):
 
 # ----------- INIT FUNCTION -----------
 def listener():
-    rospy.Subscriber("BeatPlanPub", Float32, calculate_new_destination)
+    rospy.Subscriber("/planner/delta_beat", Float32, calculate_new_destination)
     rospy.spin()
 
 
 
 if __name__ == '__main__':
     try:
-	rospy.init_node("point_to_point_mapper")
-        listener()
+		rospy.init_node("point_to_point_mapper")
+		listener()
     except rospy.ROSInterruptException:
         pass

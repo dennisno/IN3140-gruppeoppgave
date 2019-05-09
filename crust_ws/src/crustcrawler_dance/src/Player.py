@@ -32,15 +32,15 @@ def start_music(data):
 
 # ----------- INIT FUNCTION -----------
 def listener():
-    rospy.Subscriber('/MusicPub', String, set_song)
-    rospy.Subscriber('/StartMusic', Bool, start_music)
+    rospy.Subscriber('/player/set_music', String, set_song)
+    rospy.Subscriber('/player/start_music', Bool, start_music)
     rospy.spin()
 
 
 
 if __name__ == '__main__':
     try:
-	rospy.init_node('music')
+	rospy.init_node('music',anonymous = True)
         listener()
     except rospy.ROSInterruptException:
         pass

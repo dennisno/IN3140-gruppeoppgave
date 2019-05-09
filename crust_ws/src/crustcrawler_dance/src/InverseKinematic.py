@@ -82,10 +82,10 @@ def calculate_inverse(data):
     talker(joint_angles, delta_time)
 
 
-DeltaAnglesPublish = rospy.Publisher('/Next_joint_angle', DeltaAngles, queue_size = 1).publish
+DeltaAnglesPublish = rospy.Publisher('/inverse/joint_angles', DeltaAngles, queue_size = 1).publish
 # ----------- INIT FUNCTION -----------
 def listener():
-    rospy.Subscriber("/Next_point_channel", DeltaPoint, calculate_inverse)
+    rospy.Subscriber("/mapper/point_delta", DeltaPoint, calculate_inverse)
     rospy.spin()
 
 def talker(joint_angles, delta_time):
