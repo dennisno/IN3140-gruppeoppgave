@@ -36,30 +36,34 @@ def talker():
     
     # Setting the number of expected messages in the 'path_planner' node
     pub = rospy.Publisher("/planner/controller_max_points", UInt32, queue_size=1)
+    while pub.get_num_connections() is 0:
+		rospy.sleep(1)
     msg = UInt32()
     msg.data = num_beats
-    pub.publish( msg )
     pub.publish( msg )
         
     # Really not needed, just an extra check to see if we got connection to the 'player' node
     pub = rospy.Publisher('/player/start_music', Bool, queue_size=1)
+    while pub.get_num_connections() is 0:
+		rospy.sleep(1)
     msg = Bool()
     msg.data = False
-    pub.publish( msg )
     pub.publish( msg )
     
     # Setting the song in the 'player' node
     pub = rospy.Publisher('/player/set_music', MusicString, queue_size=1)
+    while pub.get_num_connections() is 0:
+		rospy.sleep(1)
     msg = MusicString()
     msg.file = song_path
-    pub.publish( msg )
     pub.publish( msg )
     
     # Starting to send messages down the message chain: this > point_2_point > inverse_kinematics > path_planner
     i = 0    
     r = rospy.Rate(30) # Hz
     pub = rospy.Publisher('/planner/delta_beat', Float32, queue_size = 100)
-    rospy.sleep(5)
+    while pub.get_num_connections() is 0:
+		rospy.sleep(1)
     while not rospy.is_shutdown():
         time_of_beat = (shorted_down_beat_frame[i+1] - shorted_down_beat_frame[i]) * 2
         i += 1
@@ -68,10 +72,10 @@ def talker():
         r.sleep()
 
 if __name__ == '__main__':
-    try:
+	try:
 		rospy.init_node('publish_music',anonymous = True)
 		talker()
-    except rospy.ROSInterruptException:
-        pass
-    except IndexError:
-	rospy.loginfo("All beats done!")
+	except rospy.ROSInterruptException:
+		pass
+	except IndexError:
+		rospy.loginfo("All beats done!")

@@ -13,7 +13,7 @@ s_path = rospkg.RosPack().get_path('crustcrawler_dance') + "/music/Alan_Walker_F
 #song = pyglet.resource.media(s_path)
 song = pyglet.media.load(s_path)
 
-def set_song(data):
+def set_music(data):
     global song
     rospy.loginfo("Player ready with: %s", data.file)
     song = pyglet.resource.media(data.file)
@@ -34,15 +34,15 @@ def start_music(data):
 
 # ----------- INIT FUNCTION -----------
 def listener():
-    rospy.Subscriber('/player/set_music', MusicString, set_song)
+    rospy.Subscriber('/player/set_music', MusicString, set_music)
     rospy.Subscriber('/player/start_music', Bool, start_music)
     rospy.spin()
 
 
 
 if __name__ == '__main__':
-    try:
-	rospy.init_node('music',anonymous = True)
-        listener()
-    except rospy.ROSInterruptException:
-        pass
+	try:
+		rospy.init_node('music',anonymous = True)
+		listener()
+	except rospy.ROSInterruptException:
+		pass
