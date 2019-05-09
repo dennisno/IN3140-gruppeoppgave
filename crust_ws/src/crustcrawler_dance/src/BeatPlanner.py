@@ -22,7 +22,7 @@ def read_beat(filename):
 # ----------- INIT FUNCTION -----------
 def talker():
     global music_filepath
-    song_path = music_filepath + "Alan_Walker_-_Faded_Instrumental_Free_download-5LsiZhZHkTM.wav" #'LetItBe.wav' #143 BPM -> 1 min = 143 beats 1000/143 = delta_beat
+    song_path = music_filepath + "Alan_Walker_Faded.wav" #'LetItBe.wav' #143 BPM -> 1 min = 143 beats 1000/143 = delta_beat
     tempo, beat_frames = read_beat(song_path)
 
     rospy.Publisher('/StartMusic', Bool, queue_size=1).publish(False)
