@@ -9,14 +9,14 @@ import pyglet
 import rospkg
 
 
-s_path = rospkg.RosPack().get_path('crustcrawler_dance') + "/music/Alan_Walker_Faded_uncompressed.wav" #LetItBe.wav"
+#s_path = rospkg.RosPack().get_path('crustcrawler_dance') + "/music/Alan_Walker_Faded_uncompressed.wav" #LetItBe.wav"
 #song = pyglet.resource.media(s_path)
-song = pyglet.media.load(s_path)
+song = None # pyglet.media.load(s_path)
 
 def set_music(data):
     global song
     rospy.loginfo("Player ready with: %s", data.file)
-    song = pyglet.resource.media(data.file)
+    song = pyglet.media.load(data.file) #pyglet.resource.media(data.file)
 
 
 def start_music(data):
