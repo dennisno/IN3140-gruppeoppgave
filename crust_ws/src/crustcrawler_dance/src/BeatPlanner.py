@@ -29,13 +29,12 @@ def talker():
     tempo, beat_frames = read_beat(song_path)
     shorted_down_beat_frame = beat_frames #[::2]
     rospy.loginfo("Found a total of %s beats", len(shorted_down_beat_frame) )
-    rospy.loginfo('MusicPub: %s', song_path)  
-
-	max_points = rospy.Publisher("/planner/controller_max_points", UInt32, queue_size=2)
-	max_points.publish( len(shorted_down_beat_frame) )
-	max_points.publish( len(shorted_down_beat_frame) )
-	
-	music_start = rospy.Publisher('/player/start_music', Bool, queue_size=2)
+    rospy.loginfo('MusicPub: %s', song_path)
+    max_points = rospy.Publisher("/planner/controller_max_points", UInt32, queue_size=2)
+    max_points.publish( len(shorted_down_beat_frame) )
+    max_points.publish( len(shorted_down_beat_frame) )
+    
+    music_start = rospy.Publisher('/player/start_music', Bool, queue_size=2)
     music_start.publish(False)
     music_start.publish(False)
     
@@ -44,7 +43,7 @@ def talker():
     set_music.publish(song_path)
     
     i = 0    
-    r = rospy.Rate(100) # Hz
+    r = rospy.Rate(50) # Hz
     pub = rospy.Publisher('/planner/delta_beat', Float32, queue_size = 100)
     while not rospy.is_shutdown():
         time_of_beat = (shorted_down_beat_frame[i+1] - shorted_down_beat_frame[i]) * 2
@@ -55,7 +54,7 @@ def talker():
 
 if __name__ == '__main__':
     try:
-		rospy.init_node('publishmusic',anonymous = True)
+		rospy.init_node('publish_music',anonymous = True)
 		talker()
     except rospy.ROSInterruptException:
         pass
