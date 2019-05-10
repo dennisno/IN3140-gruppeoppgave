@@ -94,7 +94,7 @@ def talker():
 		r.sleep()
 	
 	rospy.loginfo("All beats done!")
-	tick.publish(data=-1.0) # just to start to print messages to logout...
+	
 
 if __name__ == '__main__':
 	try:

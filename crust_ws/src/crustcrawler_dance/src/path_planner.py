@@ -6,7 +6,6 @@ the necessary calculations and commands to draw the circle using the
 Crustcrawler platform
 """
 
-from __future__ import print_function
 from std_msgs.msg import UInt32
 from std_msgs.msg import Bool
 from control_msgs.msg import FollowJointTrajectoryAction
@@ -18,7 +17,6 @@ from sys import maxint
 import actionlib
 import numpy as np
 import rospy
-from InverseKinematic import inverse
 
 
 
