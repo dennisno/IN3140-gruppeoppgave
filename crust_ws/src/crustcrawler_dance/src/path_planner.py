@@ -14,6 +14,7 @@ from control_msgs.msg import FollowJointTrajectoryGoal
 from control_msgs.msg import JointTolerance
 from trajectory_msgs.msg import JointTrajectoryPoint
 from crustcrawler_dance.msg import DeltaAngles
+from sys import maxint
 import actionlib
 import numpy as np
 import rospy
@@ -37,8 +38,8 @@ def create_trajectory_point(position, seconds):
 class trajectoryObject(object):
 	def __init__(self):
 		self.time = 0.
-		self.point_counter = 1 # first beat is beat 1
-		self.max_messages = 385 # "hard-coded" as Beat planner still does not transmit this info correctly
+		self.point_counter = 0
+		self.max_messages = maxint # "hard-coded" as Beat planner still does not transmit this info correctly
 		self.movement = FollowJointTrajectoryGoal()
 		self.movement.trajectory.joint_names.extend(['joint_1', 'joint_2', 'joint_3'])
 		self.movement.goal_tolerance.extend([ JointTolerance('joint_1', 0.1, 0., 0.), JointTolerance('joint_2', 0.1, 0., 0.), JointTolerance('joint_3', 0.1, 0., 0.) ])

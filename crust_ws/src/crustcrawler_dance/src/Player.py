@@ -12,15 +12,17 @@ import rospkg
 #s_path = rospkg.RosPack().get_path('crustcrawler_dance') + "/music/Alan_Walker_Faded_uncompressed.wav" #LetItBe.wav"
 #song = pyglet.resource.media(s_path)
 song = None # pyglet.media.load(s_path)
+offset = 0.0
 
 def set_music(data):
-    global song
+    global song, offset
     rospy.loginfo("Player ready with: %s", data.file)
     song = pyglet.media.load(data.file) #pyglet.resource.media(data.file)
+    offset = data.offset
 
 
 def start_music(data):
-    global song
+    global song, offset
     rospy.loginfo(data.data)
     if not data.data:
         rospy.loginfo("Player: Wait command!")
@@ -29,6 +31,7 @@ def start_music(data):
         rospy.logerr("Player: No music, unable to play!")
         return
     rospy.loginfo("Player: Starting to play Music!")
+    rospy.sleep(offset)
     song.play()
     pyglet.app.run()
 

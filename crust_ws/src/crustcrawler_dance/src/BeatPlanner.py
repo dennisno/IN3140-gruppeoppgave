@@ -25,52 +25,56 @@ def read_beat(filename):
 
 # ----------- INIT FUNCTION -----------
 def talker():
-    global music_filepath
-    song_path = music_filepath + "Alan_Walker_Faded_uncompressed.wav" #'LetItBe.wav'
-    r = rospy.Rate(30) # Hz
-    
-    tempo, beat_frames = read_beat(song_path)
-    shorted_down_beat_frame = beat_frames #[::2]
-    num_beats = len(shorted_down_beat_frame)
-    rospy.loginfo("Found a total of %s beats", num_beats )
-    rospy.loginfo('MusicPub: %s', song_path)
-    
-    # Setting the number of expected messages in the 'path_planner' node
-    pub = rospy.Publisher("/planner/controller_max_points", UInt32, queue_size=1)
-    while pub.get_num_connections() is 0:
+	global music_filepath
+	song_path = music_filepath + "Alan_Walker_Faded_uncompressed.wav" #'LetItBe.wav'
+	r = rospy.Rate(30) # Hz
+	song_offset = 4.5 # > sec?
+	
+	tempo, beat_frames = read_beat(song_path)
+	rospy.is_shutdown() # Call to stop sigterm errors
+	shorted_down_beat_frame = beat_frames #[::2]
+	num_beats = len(shorted_down_beat_frame)
+	rospy.loginfo("Found a total of %s beats", num_beats )
+	rospy.loginfo('MusicPub: %s', song_path)
+	
+	# Setting the number of expected messages in the 'path_planner' node
+	pub = rospy.Publisher("/planner/controller_max_points", UInt32, queue_size=1)
+	while pub.get_num_connections() is 0:
 		r.sleep()
-    msg = UInt32()
-    msg.data = num_beats
-    pub.publish( msg )
-        
-    # Really not needed, just an extra check to see if we got connection to the 'player' node
-    pub = rospy.Publisher('/player/start_music', Bool, queue_size=1)
-    while pub.get_num_connections() is 0:
+	msg = UInt32()
+	msg.data = num_beats
+	pub.publish( msg )
+	
+	# Really not needed, just an extra check to see if we got connection to the 'player' node
+	pub = rospy.Publisher('/player/start_music', Bool, queue_size=1)
+	while pub.get_num_connections() is 0:
 		r.sleep()
-    msg = Bool()
-    msg.data = False
-    pub.publish( msg )
-    
-    # Setting the song in the 'player' node
-    pub = rospy.Publisher('/player/set_music', MusicString, queue_size=1)
-    while pub.get_num_connections() is 0:
+	msg = Bool()
+	msg.data = False
+	pub.publish( msg )
+	
+	# Setting the song in the 'player' node
+	pub = rospy.Publisher('/player/set_music', MusicString, queue_size=1)
+	while pub.get_num_connections() is 0:
 		r.sleep()
-    msg = MusicString()
-    msg.file = song_path
-    pub.publish( msg )
-    
-    # Starting to send messages down the message chain: this > point_2_point > inverse_kinematics > path_planner
-    i = 0
-    pub = rospy.Publisher('/planner/delta_beat', Float32, queue_size = 100)
-    while pub.get_num_connections() is 0:
+	msg = MusicString()
+	msg.file = song_path
+	msg.offset = song_offset
+	pub.publish( msg )
+	
+	# Starting to send messages down the message chain: this > point_2_point > inverse_kinematics > path_planner
+	pub = rospy.Publisher('/planner/delta_beat', Float32, queue_size = 100)
+	while pub.get_num_connections() is 0:
 		r.sleep()
-		
+	
+	pub.publish(data=song_offset) #First beat should happen instantly?! >> Predetermined delay?
+	i = 1
 	while not rospy.is_shutdown():
-        time_of_beat = (shorted_down_beat_frame[i+1] - shorted_down_beat_frame[i]) * 2
-        i += 1
-        rospy.loginfo("Sending beat: %s / %s, Duration: %s", i+1, num_beats, time_of_beat )
-        pub.publish(time_of_beat)
-        r.sleep()
+		time_of_beat = (shorted_down_beat_frame[i+1] - shorted_down_beat_frame[i]) * 2
+		i += 1
+		rospy.loginfo("Sending beat: %s / %s, Duration: %s", i+1, num_beats, time_of_beat )
+		pub.publish(time_of_beat)
+		r.sleep()
 
 if __name__ == '__main__':
 	try:
