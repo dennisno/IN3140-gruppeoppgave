@@ -6,47 +6,33 @@ import rospy
 import time
 
 from std_msgs.msg import Bool
+from std_msgs.msg import Float32
 from crustcrawler_dance.msg import DeltaAngles
+from queue import LifoQueue
 
-func = None
-wait_time = 0
-DeltaAnglesPublish = rospy.Publisher('MultiControllerState', DeltaAngles, queue_size=1).publish
-
-def callback(event):
-    global func
-    func(event)
-
-def spin_start(event):
-    #After this launch function make shure the object points to the correct spin function
-    global DeltaAnglesPublish, wait_time, func
-    func = spin
-    rospy.sleep(5)
-    DeltaAnglesPublish(event)
-    wait_time = event.delta + (rospy.get_time() * 100)
-    
-    #Send start to player --> Rethink right syncing?
-    rospy.Publisher('/StartMusic', Bool, queue_size=1).publish(True);
-
-def spin(event):
-    global DeltaAnglesPublish, wait_time
-
-    while (100 * rospy.get_time()) < wait_time:
-        rospy.sleep((wait_time/100) - rospy.get_time())
-    rospy.loginfo("Event sendt to controller!")
-    DeltaAnglesPublish(event)
-    wait_time += event.delta
+beat_queue = LifoQueue()
+def print_queue(float_msg):
+	global beat_queue
+	if float_msg.data != -1.0:
+		beat_queue.put(float_msg.data)
+		return
+	
+	rospy.loginfo("Starting Ticking!")
+	state = True
+	while not beat_queue.empty():
+		rospy.sleep(beat_queue.get())
+		rospy.loginfo("--- Tick!" if state else "Tock! ---")
+		state != state
+		
 
 # ----------- INIT FUNCTION -----------
 def create_queue():
-    global func
-    func = spin_start
-    rospy.Publisher('/StartMusic', Bool, queue_size=1).publish(False);
-    rospy.Subscriber('/Next_joint_angle', DeltaAngles, callback)
-    rospy.spin()
+	rospy.Subscriber('/planner/tick', Float32, print_queue)
+	rospy.spin()
 
 if __name__ == '__main__':
     try:
-        rospy.init_node('timed_queue', anonymous=True)
+        rospy.init_node('ticker', anonymous=True)
         create_queue()
     except rospy.ROSInterruptException:
         pass

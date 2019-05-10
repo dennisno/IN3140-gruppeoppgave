@@ -7,6 +7,7 @@
 		point_to_point_mapper.py
 		XX TimedMoveQueue.py
 		path_planner.py
+		tick_queue.py [Debug option]
 
 		TODO: 
 	-->
@@ -44,6 +45,12 @@
 		name="path_planner"
 		pkg="crustcrawler_dance"
 		type="path_planner.py"
+		output="screen"
+	/>
+	<node
+		name="ticker"
+		pkg="crustcrawler_dance"
+		type="tick_queue.py"
 		output="screen"
 	/>
 
