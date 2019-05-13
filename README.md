@@ -14,6 +14,8 @@ roslaunch crustcrawler_dance dance.launch
 **VIKTIG! VI VAR AVHENGIGE AV Å SKRU AV SKYGGER I GAZEBO FOR AT PROGRAMMET SKULLE GÅ RASKT NOK. DERSOM ROBOTEN IKKE TREFFER BEATEN,
 PRØV FØRST Å SKRU AV SKYGGER**
 
+Pakker
+------
 Dette programmet krever i tillegg til ROS følgende pakker:
 
 Librosa:
