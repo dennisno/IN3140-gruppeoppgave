@@ -2,6 +2,17 @@
 Gruppeoppgave for å lage en dansende robot-arm
 av Eirik, Elias og Dennis
 
+Du kjører programmet ved å først bygge det opp med:
+``` markdown
+catkin_make
+source devel/setup.bash
+```
+for så å sette det igang med:
+``` markdown
+roslaunch crustcrawler_dance dance.launch
+```
+
+
 Dette programmet krever i tillegg til ROS følgende pakker:
 
 Librosa:
@@ -54,7 +65,7 @@ publiserer den til **/inverse/joint_angles**.
 
 Path_planner
 ------
-Path_planner tar inn alle vinkeloppsett som blir sent gjennom **/inverse/joint_angles**, dette lagrer den inn i et trajectory som den videre utfører bevegelsen på robotarmen når den har fått hele meldingen. Den lytter til kanalen **/planner/controller_max_points** for å finne ut av hvor mange meldinger den kommer til å få. Det er også Path_planner som publiserer til **/player/start_music**, slik at robot-armen er synkronisert til musikken som spilles. 
+Path_planner tar inn alle vinkeloppsett som blir sent gjennom **/inverse/joint_angles**, dette lagrer den inn i et trajectory som den videre utfører bevegelsen på robotarmen når den har fått hele meldingen. Den lytter til kanalen **/planner/controller_max_points** for å finne ut av hvor mange meldinger den kommer til å få. Det er også Path_planner som publiserer til **/player/start_music**, slik at robot-armen er synkronisert til musikken som spilles.
 
 Tick_queue
 ------
