@@ -8,12 +8,16 @@ Crustcrawler platform
 
 from std_msgs.msg import UInt32
 from std_msgs.msg import Bool
+
 from control_msgs.msg import FollowJointTrajectoryAction
 from control_msgs.msg import FollowJointTrajectoryGoal
 from control_msgs.msg import JointTolerance
+
 from trajectory_msgs.msg import JointTrajectoryPoint
+
 from crustcrawler_dance.msg import DeltaAngles
-from sys import maxint
+
+from sys import maxint as INT_MAX
 import actionlib
 import numpy as np
 import rospy
@@ -37,7 +41,7 @@ class trajectoryObject(object):
 	def __init__(self):
 		self.time = 0.
 		self.point_counter = 0
-		self.max_messages = maxint # "hard-coded" as Beat planner still does not transmit this info correctly
+		self.max_messages = INT_MAX 
 		self.movement = FollowJointTrajectoryGoal()
 		self.movement.trajectory.joint_names.extend(['joint_1', 'joint_2', 'joint_3'])
 		self.movement.goal_tolerance.extend([ JointTolerance('joint_1', 0.1, 0., 0.), JointTolerance('joint_2', 0.1, 0., 0.), JointTolerance('joint_3', 0.1, 0., 0.) ])
@@ -66,6 +70,7 @@ class trajectoryObject(object):
 		client = actionlib.SimpleActionClient( '/crustcrawler/controller/follow_joint_trajectory', FollowJointTrajectoryAction)
 		
 		client.wait_for_server()
+		rospy.loginfo("Established connection to \'ActionClient\' Starting movement procedure!")
 		#Send start to player --> Rethink right syncing?
 		#rospy.Publisher('/player/start_music', Bool, queue_size=1).publish(data=True);
 		
