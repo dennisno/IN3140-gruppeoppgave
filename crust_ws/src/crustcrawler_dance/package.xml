@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<package format="2">
+	<name>crustcrawler_dance</name>
+	<version>0.0.0</version>
+	<description>The crustcrawler_dance package</description>
+
+	<!-- One maintainer tag required, multiple allowed, one person per tag -->
+	<!-- Example:  -->
+	<!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
+	<maintainer email="elias@todo.todo">elias</maintainer>
+
+
+	<!-- Commonly used license strings: -->
+	<!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
+	<license>TODO</license>
+
+	<!-- The *depend tags are used to specify dependencies -->
+	<!-- Examples: -->
+	<!-- Use depend as a shortcut for packages that are both build and exec dependencies -->
+	<!--   <depend>roscpp</depend> -->
+	<!--   Note that this is equivalent to the following: --> 
+	<!--   <build_depend>roscpp</build_depend> -->
+	<!--   <exec_depend>roscpp</exec_depend> -->
+	<!--   <doc_depend>doxygen</doc_depend> -->
+	<buildtool_depend>catkin</buildtool_depend>
+	<depend>crustcrawler_pen_gazebo</depend>
+	<depend>rospy</depend>
+	<depend>librosa</depend>
+	<depend>numpy</depend>
+	<depend>rospkg</depend>
+	<depend>pyglet</depend>
+	<depend>math</depend>
+	<depend>actionlib</depend>
+	<depend>queue</depend>
+	<depend>std_msgs</depend>
+	<depend>control_msgs</depend>
+	<build_depend>message_generation</build_depend>
+	<exec_depend>message_runtime</exec_depend>
+
+	<!-- The export tag contains other, unspecified, tags -->
+	<export>
+		<!-- Other tools can request additional information be placed here -->
+
+	</export>
+</package>
