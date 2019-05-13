@@ -44,7 +44,7 @@ Point-to-point subscriber til **/planner/delta_beat** og får dermed &Delta; Tim
 
 InverseKinematic
 ------
-*Dessverre er inverskinematikken ikke helt funksjonell. Den er skrevet for en robot som har andre instillinger for 0-vinkler enn den som er default. I utgangspunktet trenger vi den strengt tatt ikke uansett, og siden vi fikk litt dårlig tid, er den derfor ikke ferdigstillt.*  
+*Dessverre er inverskinematikken ikke helt funksjonell. Eller, den kjører, men gir helt gale vinkler for hvert punkt den tar inn. Noden er er skrevet for en robot som har andre instillinger for 0-vinkler enn det som er default i gazebo-roboten. I utgangspunktet trenger vi den strengt tatt ikke uansett, og siden vi fikk litt dårlig tid, er den derfor ikke ferdigstillt.*  
 InverseKinematic regner ut hvilke vinkler hvert ledd må ha for å komme til punktene vi setter til hver beat. Den subscriber til **/mapper/point_delta** hvor den får inn hvilke punkter vi vil nå, og publisher til **/inverse/joint_angles**.
 
 Bypass_move
@@ -54,11 +54,7 @@ publiserer den til **/inverse/joint_angles**.
 
 Path_planner
 ------
-Path_planner tar inn alle vinkeloppsett som blir sent gjennom **/inverse/joint_angles**, dette lagrer den inn i et trajectory som den videre utfører bevegelsen på robotarmen når den har fått hele meldingen. Den lytter til kanalen **/planner/controller_max_points** for å finne ut av hvor mange meldinger den kommer til å få.
-
-#Bypass_move
-#------
-#bypass_move er en cache av **InverseKinematic** slik at vi ikke trenger å gå igjennom den, siden vi kun bruker noen få konfigurasjoner.
+Path_planner tar inn alle vinkeloppsett som blir sent gjennom **/inverse/joint_angles**, dette lagrer den inn i et trajectory som den videre utfører bevegelsen på robotarmen når den har fått hele meldingen. Den lytter til kanalen **/planner/controller_max_points** for å finne ut av hvor mange meldinger den kommer til å få. Det er også Path_planner som publiserer til **/player/start_music**, slik at robot-armen er synkronisert til musikken som spilles. 
 
 Tick_queue
 ------
