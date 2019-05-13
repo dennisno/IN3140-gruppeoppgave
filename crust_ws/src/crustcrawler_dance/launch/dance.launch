@@ -23,36 +23,42 @@
 		type="TimedMoveQueue.py"
 		output="screen"
 	/-->
-	<node
+	<!--node
 		name="inverse_kinematic"
     		pkg="crustcrawler_dance"
     		type="InverseKinematic.py"
     		output="screen"
-  	/>
+  	/-->
   	<node
     		name="music_player"
     		pkg="crustcrawler_dance"
     		type="Player.py"
     		output="screen"
   	/>
-  	<node
+  	<!--node
     		name="point_to_point"
     		pkg="crustcrawler_dance"
     		type="point_to_point_mapper.py"
     		output="screen"
-  	/>
+  	/-->
+	<node 
+		name="point_creator"
+		pkg="crustcrawler_dance"
+		type="bypass_move.py"
+		output="screen"
+	/>
 	<node
 		name="path_planner"
 		pkg="crustcrawler_dance"
 		type="path_planner.py"
 		output="screen"
 	/>
-	<node
+	<!--node
 		name="ticker"
 		pkg="crustcrawler_dance"
 		type="tick_queue.py"
 		output="screen"
-	/>
+	/-->
 	<!-- Launch robot in Gazebo, then launch 'gazebo.launch' first! -->
 	<!-- Launch robot in Gazebo: -->
         <include file="$(find crustcrawler_pen_gazebo)/launch/controller.launch">
@@ -61,7 +67,10 @@
                         Unsure about what controller that is right, 
                         or if it needs implementation
                 -->
-                <arg name="control" value="effort" />
+                <arg 
+			name="control" 
+			value="trajectory" 
+		/>
         </include>
 
 
