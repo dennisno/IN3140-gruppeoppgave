@@ -42,8 +42,8 @@ Point-to-point subscriber til **BeatPlanner** og får dermed &Delta; Time inn so
 
 InverseKinematic
 ------
-InverseKinematic regner ut hvilke vinkler hvert ledd må ha for å komme til punktene vi setter til hver beat. Den subscriber til **Point-to-point** hvor den får inn hvilke punkter vi vil nå, og publisher til **TimedMoveQueue**.
+InverseKinematic regner ut hvilke vinkler hvert ledd må ha for å komme til punktene vi setter til hver beat. Den subscriber til **Point-to-point** hvor den får inn hvilke punkter vi vil nå, og publisher til **Path_planner**.
 
-TimedMoveQueue
+Path_planner
 ------
-TimedMoveQueue lager en lenkeliste med alle vinklene den får. Den subscriber på **InverseKinematic** og legger vinklene til på enden av lenkelisten. TimedMoveQueue publisher bevegelsene til **Controller** som får armen til å flytte på seg. TimedMoveQueue publisher også et startsignal til **Player** for at den skal starte å spille musikk.
+Path_planner tar inn alle vinkeloppsett den mottar, dette lagrer den inn i et trajectory som den videre utfører bevegelsen på robotarmen når den har fått hele meldingen.
