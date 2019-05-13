@@ -19,14 +19,15 @@ strech = [
 		]
 i = 0
 base_angle = 0.0
-angle_increase = PI / 11
+angle_increase = PI / 10
+stop = 3 * PI / 4
 publish = rospy.Publisher('/inverse/joint_angles', DeltaAngles, queue_size = 1).publish
 def calculate_new_destination(float_package):
-	global publish, base_angle, i, strech, angle_increase
+	global publish, base_angle, i, strech, angle_increase, stop
 	
 	#get_new angle:
 	base_angle += angle_increase
-	if base_angle >= PI or base_angle <= - PI:
+	if base_angle >= stop or base_angle <= - stop:
 		angle_increase = -angle_increase
 	
 	i = (i + 1) % len(strech) 

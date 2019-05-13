@@ -69,12 +69,12 @@ def talker():
 	while pub.get_num_connections() is 0:
 		r.sleep()
 	
-	tick = rospy.Publisher('/planner/tick', Float32, queue_size = 50)
-	while tick.get_num_connections() is 0:
-		r.sleep()
+	#tick = rospy.Publisher('/planner/tick', Float32, queue_size = 50)
+	#while tick.get_num_connections() is 0:
+	#	r.sleep()
 	
 	pub.publish(data=song_offset) #First beat should happen instantly?! >> Predetermined delay?
-	tick.publish(data=song_offset)
+	#tick.publish(data=song_offset)
 	r.sleep()
 	i = 1
 	while not rospy.is_shutdown() and i < num_beats:
@@ -82,7 +82,7 @@ def talker():
 		i += 1
 		rospy.loginfo("Sending beat: %s / %s, Duration: %s", i+1, num_beats, time_of_beat )
 		pub.publish(data=time_of_beat)
-		tick.publish(data=time_of_beat)
+		#tick.publish(data=time_of_beat)
 		r.sleep()
 	
 	rospy.loginfo("All beats done!")
