@@ -47,3 +47,11 @@ InverseKinematic regner ut hvilke vinkler hvert ledd må ha for å komme til pun
 Path_planner
 ------
 Path_planner tar inn alle vinkeloppsett den mottar, dette lagrer den inn i et trajectory som den videre utfører bevegelsen på robotarmen når den har fått hele meldingen.
+
+bypass_move
+------
+bypass_move er en cache av **InverseKinematic** slik at vi ikke trenger å gå igjennom den. Siden vi kun bruker noen få konfigurasjoner.
+
+tick_queue
+------
+Tick_queue er en debugg klasse for å lage en printstatement hver gang det er en beat i sangen.
