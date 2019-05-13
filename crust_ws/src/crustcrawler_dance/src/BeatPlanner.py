@@ -55,14 +55,6 @@ def talker():
 	msg.data = num_beats
 	pub.publish( msg )
 	
-	# Really not needed, just an extra check to see if we got connection to the 'player' node
-	pub = rospy.Publisher('/player/start_music', Bool, queue_size=1)
-	while pub.get_num_connections() is 0:
-		r.sleep()
-	msg = Bool()
-	msg.data = False
-	pub.publish( msg )
-	
 	# Setting the song in the 'player' node
 	pub = rospy.Publisher('/player/set_music', MusicString, queue_size=1)
 	while pub.get_num_connections() is 0:

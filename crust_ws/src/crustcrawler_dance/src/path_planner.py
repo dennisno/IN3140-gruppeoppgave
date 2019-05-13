@@ -81,15 +81,6 @@ class trajectoryObject(object):
 			rospy.loginfo("Crustcrawler failed due to: '{!s}'({!s})".format(result.error_string, result.error_code))
 		return result.error_code
 
-"""
-def get_max_msg(int_msg):
-	global myTrajectory
-	myTrajectory.set_point_cap(int_msg)
-	
-def set_point(DA_msg):
-	global myTrajectory
-	myTrajectory.add_point(DA_msg)
-"""
 
 # -------------- INIT FUNCTION ----------------
 def talker(): #point_description
