@@ -54,6 +54,16 @@
 		output="screen"
 	/>
 	<!-- Launch robot in Gazebo, then launch 'gazebo.launch' first! -->
+	<!-- Launch robot in Gazebo: -->
+        <include file="$(find crustcrawler_pen_gazebo)/launch/controller.launch">
+                <!-- Specify that we would like to have effort controls -->
+                <!--    
+                        Unsure about what controller that is right, 
+                        or if it needs implementation
+                -->
+                <arg name="control" value="effort" />
+        </include>
+
 
 
 </launch>
