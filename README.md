@@ -13,6 +13,7 @@ roslaunch crustcrawler_dance dance.launch
 ```
 **VIKTIG! VI VAR AVHENGIGE AV Å SKRU AV SKYGGER I GAZEBO FOR AT PROGRAMMET SKULLE GÅ RASKT NOK. DERSOM ROBOTEN IKKE TREFFER BEATEN,
 PRØV FØRST Å SKRU AV SKYGGER**
+Vi er ikke helt sikre, men det er også mulig at *crustcrawler_pen* og *crustcrawler_simulation* må slettes og klones fra Inf3480-githuben. 
 
 Pakker
 ------
@@ -58,7 +59,7 @@ Point-to-point subscriber til **/planner/delta_beat** og får dermed &Delta; Tim
 
 InverseKinematic
 ------
-*Dessverre er inverskinematikken ikke helt funksjonell. Eller, den kjører, men gir helt gale vinkler for hvert punkt den tar inn. Noden er er skrevet for en robot som har andre instillinger for 0-vinkler enn det som er default i gazebo-roboten. I utgangspunktet trenger vi den strengt tatt ikke uansett, og siden vi fikk litt dårlig tid, er den derfor ikke ferdigstillt.*  
+*Dessverre er inverskinematikken ikke helt funksjonell. Eller, den kjører, men gir helt gale vinkler for hvert punkt den tar inn. Noden er skrevet for en robot som har andre instillinger for 0-vinkler enn det som er default i gazebo-roboten. I utgangspunktet trenger vi den strengt tatt ikke uansett, og siden vi fikk litt dårlig tid, er den derfor ikke ferdigstillt.*  
 InverseKinematic regner ut hvilke vinkler hvert ledd må ha for å komme til punktene vi setter til hver beat. Den subscriber til **/mapper/point_delta** hvor den får inn hvilke punkter vi vil nå, og publisher til **/inverse/joint_angles**.
 
 Bypass_move
