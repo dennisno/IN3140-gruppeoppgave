@@ -28,29 +28,37 @@ Pyglet:
 BeatPlanner
 ------
 Denne filen tar inn en musikkfil som kjøres gjennom Librosa for å få ut hvilke
-tidspunkter i filen det finnes en *beat*. Den publiserer dette til **Point-to-point**.
-Videre publiserer den også til **Player** for å starte musikk.
+tidspunkter i filen det finnes en *beat*. Den publiserer dette til **/planner/delta_beat**,
+og antallet meldinger den kommer til å sende til **/planner/controller_max_points**.
+Videre publiserer den også til **/player/set_music** for å sette hva slags musikk som er planlagt.
 
 Player
 ------
-Player spiller musikk, og starter ikke å spille musikk før den får ok signal fra
-**Point-to-point**, den subscriber også til **TimedMoveQueue** for å vite når den skal starte musikken.
+Player spiller musikk, og får info om hvilken musikk den skal spille fra **/player/set_music**,
+og den subscriber også til **/player/start_music** for å vite når den skal starte musikken.
 
 Point-to-point
 ------
-Point-to-point subscriber til **BeatPlanner** og får dermed &Delta; Time inn som den kalkulerer et punkt den vil til, før den publisher dette til **InverseKinematic** for å kalkulere hvilke vinkler leddene skal stå i.
+*Denne brukes til å regne ut punkter som skal sendes til InverseKinematic, men erstattes av bypass_move. Se under for mer info.*
+Point-to-point subscriber til **/planner/delta_beat** og får dermed &Delta; Time inn som den kalkulerer et punkt den vil til, før den publisher dette til **/mapper/point_delta** som lyttes til av en node som skal kalkulere hvilke vinkler leddene skal stå i.
 
 InverseKinematic
 ------
-InverseKinematic regner ut hvilke vinkler hvert ledd må ha for å komme til punktene vi setter til hver beat. Den subscriber til **Point-to-point** hvor den får inn hvilke punkter vi vil nå, og publisher til **Path_planner**.
-
-Path_planner
-------
-Path_planner tar inn alle vinkeloppsett den mottar, dette lagrer den inn i et trajectory som den videre utfører bevegelsen på robotarmen når den har fått hele meldingen.
+*Dessverre er inverskinematikken ikke helt funksjonell. Den er skrevet for en robot som har andre instillinger for 0-vinkler enn den som er default. I utgangspunktet trenger vi den strengt tatt ikke uansett, og siden vi fikk litt dårlig tid, er den derfor ikke ferdigstillt.*  
+InverseKinematic regner ut hvilke vinkler hvert ledd må ha for å komme til punktene vi setter til hver beat. Den subscriber til **/mapper/point_delta** hvor den får inn hvilke punkter vi vil nå, og publisher til **/inverse/joint_angles**.
 
 Bypass_move
 ------
-bypass_move er en cache av **InverseKinematic** slik at vi ikke trenger å gå igjennom den, siden vi kun bruker noen få konfigurasjoner.
+Denne noden erstatter inverskinematikken, ved at den bare regner ut de neste vinklene basert på enkel trigonometri. Den lytter til **/planner/delta_beat**, og setter sammen meldinger av typen *Delta_angles* som inneholder koordinater og tiden roboten har på å komme seg dit. Dette
+publiserer den til **/inverse/joint_angles**.
+
+Path_planner
+------
+Path_planner tar inn alle vinkeloppsett som blir sent gjennom **/inverse/joint_angles**, dette lagrer den inn i et trajectory som den videre utfører bevegelsen på robotarmen når den har fått hele meldingen. Den lytter til kanalen **/planner/controller_max_points** for å finne ut av hvor mange meldinger den kommer til å få.
+
+#Bypass_move
+#------
+#bypass_move er en cache av **InverseKinematic** slik at vi ikke trenger å gå igjennom den, siden vi kun bruker noen få konfigurasjoner.
 
 Tick_queue
 ------
