@@ -29,12 +29,12 @@
     		type="InverseKinematic.py"
     		output="screen"
   	/-->
-  	<node
-    		name="music_player"
-    		pkg="crustcrawler_dance"
-    		type="Player.py"
-    		output="screen"
-  	/>
+	<node
+  		name="music_player"
+  		pkg="crustcrawler_dance"
+  		type="Player.py"
+  		output="screen"
+	/>
   	<!--node
     		name="point_to_point"
     		pkg="crustcrawler_dance"
@@ -61,7 +61,7 @@
 	/-->
 
 	<!-- Launch robot in Gazebo, then launch 'gazebo.launch' first! -->
-	<!-- Launch robot in Gazebo: 
+	<!-- Launch robot in Gazebo:
         <include file="$(find crustcrawler_pen_gazebo)/launch/controller.launch"-->
                 <!-- Specify that we would like to have effort controls -->
                 <!--
