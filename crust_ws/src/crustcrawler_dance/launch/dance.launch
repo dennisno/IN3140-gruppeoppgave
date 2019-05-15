@@ -9,7 +9,7 @@
 		path_planner.py
 		tick_queue.py [Debug option]
 
-		TODO: 
+		TODO:
 	-->
 	<node
 		name="beat_planner"
@@ -41,7 +41,7 @@
     		type="point_to_point_mapper.py"
     		output="screen"
   	/-->
-	<node 
+	<node
 		name="point_creator"
 		pkg="crustcrawler_dance"
 		type="bypass_move.py"
@@ -59,20 +59,21 @@
 		type="tick_queue.py"
 		output="screen"
 	/-->
+
 	<!-- Launch robot in Gazebo, then launch 'gazebo.launch' first! -->
-	<!-- Launch robot in Gazebo: -->
-        <include file="$(find crustcrawler_pen_gazebo)/launch/controller.launch">
+	<!-- Launch robot in Gazebo: 
+        <include file="$(find crustcrawler_pen_gazebo)/launch/controller.launch"-->
                 <!-- Specify that we would like to have effort controls -->
-                <!--    
-                        Unsure about what controller that is right, 
+                <!--
+                        Unsure about what controller that is right,
                         or if it needs implementation
-                -->
-                <arg 
-			name="control" 
-			value="trajectory" 
+
+                <arg
+			name="control"
+			value="trajectory"
 		/>
         </include>
-
+			-->
 
 
 </launch>
